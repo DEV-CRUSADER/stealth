@@ -1,11 +1,15 @@
 import React from "react";
 
-const GeneralApp = () => {
+import { Stack } from "@mui/material";
+import Conversation from "../../components/Conversation/index";
+import Chats from "../../components/Chats.js";
 
+const GeneralApp = () => {
   return (
-    <>
-      App
-    </>
+    <Stack direction={"row"}>
+      <Chats />
+      <Conversation />
+    </Stack>
   );
 };
 

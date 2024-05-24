@@ -55,7 +55,7 @@ const ChatList = [
     time: "9:36",
     unread: 0,
     pinned: true,
-    online: true,
+    online: false,
   },
   {
     id: 1,
@@ -65,7 +65,7 @@ const ChatList = [
     time: "12:02",
     unread: 2,
     pinned: true,
-    online: false,
+    online: true,
   },
   {
     id: 2,
@@ -105,7 +105,7 @@ const ChatList = [
     time: "08:42",
     unread: 0,
     pinned: false,
-    online: false,
+    online: true,
   },
   {
     id: 6,
@@ -132,7 +132,7 @@ const ChatList = [
 const ChatHistory = [
   {
     type: "msg",
-    message: "Hi 👋🏻, How are ya ?",
+    message: "Hi 👋🏻, How are you ?",
     incoming: true,
     outgoing: false,
   },
@@ -173,7 +173,6 @@ const ChatHistory = [
     incoming: false,
     outgoing: true,
   },
-
   {
     type: "msg",
     subtype: "doc",
@@ -183,8 +182,17 @@ const ChatHistory = [
   },
   {
     type: "msg",
+    subtype: "doc",
+    message: "Sent file.png",
+    incoming: false,
+    outgoing: true,
+  },
+  {
+    type: "msg",
     subtype: "link",
     preview: faker.image.cats(),
+    title: "Cute Cats",
+    link: "https://www.google.co.in",
     message: "Yep, I can also do that",
     incoming: true,
     outgoing: false,
@@ -192,10 +200,18 @@ const ChatHistory = [
   {
     type: "msg",
     subtype: "reply",
-    reply: "This is a reply",
+    reply: "This is a google www.google.com , click to visit google.. www.youtube.com",
     message: "Yep, I can also do that",
     incoming: false,
     outgoing: true,
+  },
+  {
+    type: "msg",
+    subtype: "reply",
+    reply: "https://www.youtube.com",
+    message: "This is a google www.google.com , click to visit google.. www.youtube.com",
+    incoming: true,
+    outgoing: false,
   },
 ];
 

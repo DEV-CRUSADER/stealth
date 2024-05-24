@@ -1,11 +1,19 @@
-import { Avatar, Box, Divider, IconButton, Stack } from "@mui/material";
-
+import { 
+  Avatar, 
+  Box, 
+  Divider, 
+  IconButton, 
+  Stack,
+  Switch
+} from "@mui/material";
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
 import Logo from "../../assets/Images/logo.png";
 import { NavButtons, NavSetting } from "../../data";
+
+import useSettings from "../../hooks/useSettings";
 
 import { faker } from "@faker-js/faker";
 
@@ -14,8 +22,10 @@ const DashboardLayout = () => {
 
   const [selected, setSelected] = useState(0);
 
+  const {onToggleMode} = useSettings()
+
   return (
-    <>
+    <Stack direction="row">
       <Box
         p={2}
         sx={{
@@ -82,7 +92,7 @@ const DashboardLayout = () => {
                   onClick={() => setSelected(button.index)}
                   sx={{
                     width: "max-content",
-                    color: theme.palette.mode == "dark"? "white" : theme.palette.text.primary,
+                    color: theme.palette.mode === "dark"? "white" : theme.palette.text.primary,
                   }}
                   key={button.index}
                 >
@@ -116,9 +126,9 @@ const DashboardLayout = () => {
                   onClick={() => setSelected(button.index)}
                   sx={{
                     width: "max-content",
-                    color: theme.palette.mode == "dark" ? "white" : theme.palette.text.primary,
+                    color: theme.palette.mode === "dark" ? "white" : theme.palette.text.primary,
                   }}
-                  key={button.id}
+                  key={button.index}
                 >
                   {button.icon}
                 </IconButton>
@@ -127,12 +137,17 @@ const DashboardLayout = () => {
           </Stack>   
         </Stack>
         <Stack>
+          {/* FIXME: Remove the below switch */}
+          <Switch 
+            defaultChecked={false}
+            onChange={() => onToggleMode()}
+          />
           <Avatar alt="user" src={faker.image.avatar()}></Avatar>
         </Stack>
         </Stack>
       </Box>
       <Outlet />
-    </>
+    </Stack>
   );
 };
 
