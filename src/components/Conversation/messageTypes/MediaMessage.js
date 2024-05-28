@@ -4,7 +4,7 @@ import { alpha, useTheme } from "@mui/material/styles";
 
 import { DetectURLFromText as Text, MessageWrapper } from "./utils";
 
-
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const MediaMessage = ({ message }) => {
   const theme = useTheme();
@@ -29,9 +29,11 @@ const MediaMessage = ({ message }) => {
       }}
     >
       <Stack spacing={1}>
-        <img
+        <LazyLoadImage
+          height={210}
+          effect="blur"
           src={message.img}
-          alt={<Skeleton height={210} width={210}/>}
+          placeholderSrc="/assets/Images/lazyLoadImagePlaceholder.jpg"
           style={{
             maxHeight: "210px",
             borderRadius: "8px",
@@ -42,7 +44,7 @@ const MediaMessage = ({ message }) => {
           sx={{
             textAlign: "left",
             minWidth: "fit-content",
-            maxWidth: "calc(100vw - 800px)",
+            maxWidth: "calc(100vw - 600px)",
             padding: "3px 0px 0px 10px",
           }}
           gutterBottom

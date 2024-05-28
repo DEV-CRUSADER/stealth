@@ -54,6 +54,7 @@ const DocumentMessageBubble = ({ message }) => {
                 sx={{
                   textAlign: "left",
                   width: "max-content",
+                  maxWidth: "calc(100vw - 600px)",
                 }}
               >
                 {message.message.substring(0, 25)}{message.message.length > 25 ? "..." : ""}

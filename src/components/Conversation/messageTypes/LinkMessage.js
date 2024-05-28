@@ -79,7 +79,7 @@ const LinkMessage = ({ message }) => {
             sx={{
               textAlign: "left",
               minWidth: "fit-content",
-              maxWidth: "calc(100vw - 800px)",
+              maxWidth: "calc(100vw - 600px)",
               padding: "3px 0px 0px 10px",
             }}
             gutterBottom

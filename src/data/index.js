@@ -219,7 +219,7 @@ const ChatHistory = [
     type: "msg",
     subtype: "img",
     message: "Here You Go",
-    img: faker.image.abstract(),
+    img: faker.image.city(),
     incoming: false,
     outgoing: true,
   },
