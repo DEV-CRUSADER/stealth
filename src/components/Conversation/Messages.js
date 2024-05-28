@@ -20,10 +20,7 @@ const Messages = () => {
         height: "100%",
         overflowY: "scroll",
         flexGrow: 1,
-        backgroundColor:
-          theme.palette.mode === "light"
-            ? "grey"
-            : theme.palette.background.default,
+        backgroundColor: (theme.palette.mode === "light") ? "grey" : theme.palette.background.default,
       }}
       p={2}
     >
@@ -31,7 +28,7 @@ const Messages = () => {
         {ChatHistory.map((message, index) => {
           switch (message.type) {
             case "divider":
-              return <Divider>{message.text}</Divider>;
+              return <Divider key={index} >{message.text}</Divider>;
             case "msg":
               switch (message.subtype) {
                 case "img":

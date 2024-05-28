@@ -25,81 +25,98 @@ import useResponsive from "../../hooks/useResponsive";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 
-const StyledInput = styled(TextField)(({ theme }) => ({
+const StyledTextFiled = styled(TextField)(({ theme }) => ({
   "& .MuiInputBase-input": {
-    paddingTop: "12px !important",
-    paddingBottom: "12px !important",
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    borderRadius: 20,
+  },
+  "& .MuiFilledInput-root": {
+    borderRadius: 8,
   },
 }));
 
 const Actions = [
   {
-    color: "#4da5fe",
+    color: "primary.lighter",
     icon: <Image size={24} />,
-    y: 102,
     title: "Photo/Video",
   },
   {
-    color: "#1b8cfe",
+    color: "primary.light",
     icon: <Sticker size={24} />,
-    y: 172,
     title: "Stickers",
   },
   {
-    color: "#0172e4",
+    color: "primary.main",
     icon: <Camera size={24} />,
-    y: 242,
     title: "Image",
   },
   {
-    color: "#0159b2",
+    color: "primary.dark",
     icon: <File size={24} />,
-    y: 312,
     title: "Document",
   },
   {
-    color: "#013f7f",
+    color: "primary.darker",
     icon: <User size={24} />,
-    y: 382,
     title: "Contact",
   },
 ];
 
 const ChatInput = ({ openPicker, setOpenPicker }) => {
+  const theme = useTheme();
+
   const [openActions, setOpenActions] = React.useState(false);
 
   return (
-    <StyledInput
+    <StyledTextFiled
       fullWidth
-      placeholder="Write a message..."
+      placeholder="Type a message"
       variant="filled"
       InputProps={{
         disableUnderline: true,
         startAdornment: (
-          <Stack sx={{ width: "max-content" }}>
+          <Stack
+            direction={"column"}
+            sx={{
+              width: "max-content",
+              top: 0,
+            }}
+          >
             <Stack
+              spacing={2}
               sx={{
+                display: openActions ? "flex" : "none",
                 position: "relative",
-                display: openActions ? "inline-block" : "none",
+                bottom: 0,
+                left: 0,
               }}
             >
-              {Actions.map((el) => (
-                <Tooltip placement="right" title={el.title}>
-                  <Fab
-                    onClick={() => {
-                      setOpenActions(!openActions);
-                    }}
-                    sx={{
-                      position: "absolute",
-                      top: -el.y,
-                      backgroundColor: el.color,
-                    }}
-                    aria-label="add"
-                  >
-                    {el.icon}
-                  </Fab>
-                </Tooltip>
-              ))}
+              <Stack
+              spacing={2}
+                sx={{
+                  position: "absolute",
+                  bottom: 30,
+                  left: -5,
+                }}
+              >
+                {Actions.map((el) => (
+                  <Tooltip title={el.title} placement="right">
+                      <Fab
+                        onClick={() => {
+                          setOpenActions(!openActions);
+                        }}
+                        sx={{
+                          backgroundColor: el.color,
+                        }}
+                        aria-label="add"
+                        >
+                        {el.icon}
+                      </Fab>
+                  </Tooltip>
+                  ))}
+                </Stack>
             </Stack>
 
             <InputAdornment>
@@ -108,7 +125,7 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
                   setOpenActions(!openActions);
                 }}
               >
-                <LinkSimple />
+                <LinkSimple color={theme.palette.primary.main} />
               </IconButton>
             </InputAdornment>
           </Stack>
@@ -118,10 +135,11 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
             <InputAdornment>
               <IconButton
                 onClick={() => {
+                  console.log("clicked");
                   setOpenPicker(!openPicker);
                 }}
               >
-                <Smiley />
+                <Smiley color={theme.palette.primary.main} />
               </IconButton>
             </InputAdornment>
           </Stack>
@@ -164,7 +182,7 @@ const Footer = () => {
                 zIndex: 10,
                 position: "fixed",
                 display: openPicker ? "inline" : "none",
-                bottom: 81,
+                bottom: 75,
                 right: isMobile
                   ? 20
                   : searchParams.get("open") === "true"
