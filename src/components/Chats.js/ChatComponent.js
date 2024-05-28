@@ -47,6 +47,8 @@ const ChatComponent = ({ id, img, name, msg, time, unread, online }) => {
       sx={{
         width: "100%",
         borderRadius: 1,
+        cursor: "pointer",
+        boxShadow: theme.shadows[4],
         backgroundColor:
           theme.palette.mode === "light"
             ? "#FFFFFF"

@@ -2,7 +2,7 @@ import { Box,Typography} from "@mui/material";
 import React from "react";
 import { alpha, useTheme } from "@mui/material/styles";
 
-import { DetectURLFromText as Text } from "./utils";
+import { DetectURLFromText as Text, MessageWrapper } from "./utils";
 
 const MessageBubble = ({ message }) => {
   const theme = useTheme();
@@ -12,7 +12,6 @@ const MessageBubble = ({ message }) => {
       <Box
         sx={{
           width: "fit-content",
-          maxWidth: "70%",
           borderRadius: "10px",
           padding: "10px",
           display: "inline-block",
@@ -30,8 +29,11 @@ const MessageBubble = ({ message }) => {
           variant="body2"
           sx={{
             textAlign: "left",
-            width: "max-content",
+            minWidth: "fit-content",
+            maxWidth: "calc(100vw - 800px)",
+            padding: "3px 0px 0px 10px",
           }}
+          gutterBottom
         >
           <Text
             content={message.message}
@@ -42,4 +44,10 @@ const MessageBubble = ({ message }) => {
   );
 }
 
-export default MessageBubble;
+const Wrapper = ({ message }) => {
+  return (
+    <MessageWrapper component={<MessageBubble message={message}/>} message={message}/>
+  )
+}
+
+export default Wrapper

@@ -88,7 +88,7 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
               spacing={2}
               sx={{
                 display: openActions ? "flex" : "none",
-                position: "relative",
+                position: "relative", 
                 bottom: 0,
                 left: 0,
               }}

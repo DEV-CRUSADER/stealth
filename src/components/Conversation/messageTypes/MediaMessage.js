@@ -1,8 +1,10 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, Skeleton } from "@mui/material";
 import React from "react";
 import { alpha, useTheme } from "@mui/material/styles";
 
-import { DetectURLFromText as Text } from "./utils";
+import { DetectURLFromText as Text, MessageWrapper } from "./utils";
+
+
 
 const MediaMessage = ({ message }) => {
   const theme = useTheme();
@@ -29,13 +31,22 @@ const MediaMessage = ({ message }) => {
       <Stack spacing={1}>
         <img
           src={message.img}
-          alt={"Loading..."}
+          alt={<Skeleton height={210} width={210}/>}
           style={{
             maxHeight: "210px",
             borderRadius: "8px",
           }}
         />
-        <Typography variant="body2" sx={{ width: "max-content" }}>
+        <Typography
+          variant="body2"
+          sx={{
+            textAlign: "left",
+            minWidth: "fit-content",
+            maxWidth: "calc(100vw - 800px)",
+            padding: "3px 0px 0px 10px",
+          }}
+          gutterBottom
+        >
           <Text 
             content={message.message} 
             linkColor={theme.palette.mode === "dark" ? ( message.incoming && !message.outgoing ? theme.palette.primary.light : theme.palette.primary.darker ): theme.palette.primary.darker}
@@ -46,4 +57,10 @@ const MediaMessage = ({ message }) => {
   );
 };
 
-export default MediaMessage;
+const Wrapper = ({ message }) => {
+  return (
+    <MessageWrapper component={<MediaMessage message={message}/>} message={message}/>
+  )
+}
+
+export default Wrapper

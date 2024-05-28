@@ -4,7 +4,7 @@ import { alpha, useTheme } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import { Link as LinkIcon } from "phosphor-react";
 
-import { DetectURLFromText as Text } from "./utils";
+import { DetectURLFromText as Text, MessageWrapper } from "./utils";
 
 const LinkMessage = ({ message }) => {
   const theme = useTheme();
@@ -15,7 +15,6 @@ const LinkMessage = ({ message }) => {
         p={0.5}
         sx={{
           width: "fit-content",
-          maxWidth: "70%",
           borderRadius: "10px",
           padding: "10px",
           display: "inline-block",
@@ -41,7 +40,7 @@ const LinkMessage = ({ message }) => {
           <Stack spacing={1}>
             <Typography
               variant="subtitle2"
-              sx={{ textAlign: "left", width: "max-content" }}
+              sx={{ textAlign: "left", width: "fit-content" }}
             >
               {message.title}
             </Typography>
@@ -77,7 +76,13 @@ const LinkMessage = ({ message }) => {
           </Stack>
           <Typography
             variant="body2"
-            sx={{ textAlign: "left", width: "max-content" }}
+            sx={{
+              textAlign: "left",
+              minWidth: "fit-content",
+              maxWidth: "calc(100vw - 800px)",
+              padding: "3px 0px 0px 10px",
+            }}
+            gutterBottom
           >
             <Text 
               content={message.message} 
@@ -90,4 +95,10 @@ const LinkMessage = ({ message }) => {
   );
 };
 
-export default LinkMessage;
+const Wrapper = ({ message }) => {
+  return (
+    <MessageWrapper component={<LinkMessage message={message}/>} message={message}/>
+  )
+}
+
+export default Wrapper

@@ -1,26 +1,40 @@
-import { faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker";// import {  } from "phosphor-react";
 import {
-  ChatCircleDots,
-  Gear,
+  ChatCircleDots,  Gear,
   GearSix,
   Phone,
-  SignOut,
-  User,
   Users,
+
+  UserCircle,
+  Sliders,
+  ChatsCircle,
+  Info ,
+
+
+  ArrowBendUpLeft ,
+  Smiley,
+  ArrowBendUpRight,
+  Star,
+  Warning,
+  Trash,
 } from "phosphor-react";
 
 const ProfileMenu = [
   {
-    title: "Profile",
-    icon: <User />,
+    title: "Account",
+    icon: <UserCircle />,
   },
   {
-    title: "Settings",
-    icon: <Gear />,
+    title: "Settings & Privacy",
+    icon: <Sliders />,
   },
   {
-    title: "Profile",
-    icon: <SignOut />,
+    title: "Chats",
+    icon: <ChatsCircle />,
+  },
+  {
+    title: "Help",
+    icon: <Info  />,
   },
 ];
 
@@ -43,6 +57,40 @@ const NavSetting = [
   {
     index: 3,
     icon: <GearSix />,
+  },
+];
+
+
+const MessageMenuItems = [
+  {
+    id: 0,
+    icon: <ArrowBendUpLeft />,
+    text: "Reply",
+  },
+  {
+    id: 1,
+    icon: <ArrowBendUpRight />,
+    text: "Forward",
+  },
+  {
+    id: 2,
+    icon: <Smiley />,
+    text: "React",
+  },
+  {
+    id: 3,
+    icon: <Star />,
+    text: "Star",
+  },
+  {
+    id: 4,
+    icon: <Trash />,
+    text: "Delete",
+  },
+  {
+    id: 5,
+    icon: <Warning />,
+    text: "Report",
   },
 ];
 
@@ -169,7 +217,15 @@ const ChatHistory = [
   },
   {
     type: "msg",
-    message: "Can you please send this in file format?",
+    subtype: "img",
+    message: "Here You Go",
+    img: faker.image.abstract(),
+    incoming: false,
+    outgoing: true,
+  },
+  {
+    type: "msg",
+    message: "Can you please send this in file format? lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Can you please send this in file format? lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
     incoming: false,
     outgoing: true,
   },
@@ -240,6 +296,7 @@ export {
   ProfileMenu,
   NavSetting,
   NavButtons,
+  MessageMenuItems,
   ChatList,
   ChatHistory,
   MessageOptions,

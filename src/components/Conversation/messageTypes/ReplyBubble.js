@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import { alpha, useTheme } from "@mui/material/styles";
 
-import { DetectURLFromText as Text } from "./utils";
+import { DetectURLFromText as Text, MessageWrapper } from "./utils";
 
 const ReplyMessageBubble = ({ message }) => {
   const theme = useTheme();
@@ -11,8 +11,7 @@ const ReplyMessageBubble = ({ message }) => {
     <Box textAlign={message.incoming && !message.outgoing ? "left" : "right"}>
       <Box
         sx={{
-          width: "fit-content",
-          maxWidth: "70%",
+          width: "fit-content",          // maxWidth: "70%",
           borderRadius: "10px",
           padding: "10px",
           display: "inline-block",
@@ -36,6 +35,8 @@ const ReplyMessageBubble = ({ message }) => {
               backgroundColor: theme.palette.grey[300],
               color: "#6D2D80",
               borderLeft: `5px solid ${theme.palette.primary.dark}`,
+              minWidth: "fit-content",
+              maxWidth: "calc(100vw - 800px)",
             }}
           >
             {message.message.substring(0, 30) + (message.message.length > 30 ? "..." : "")}
@@ -44,8 +45,11 @@ const ReplyMessageBubble = ({ message }) => {
             variant="body2"
             sx={{
               textAlign: "left",
-              width: "max-content",
+              minWidth: "fit-content",
+              maxWidth: "calc(100vw - 800px)",
+              padding: "3px 0px 0px 10px",
             }}
+            gutterBottom
           >
             <Text
               content={message.reply}
@@ -58,5 +62,10 @@ const ReplyMessageBubble = ({ message }) => {
   );
 };
 
+const Wrapper = ({ message }) => {
+  return (
+    <MessageWrapper component={<ReplyMessageBubble message={message}/>} message={message}/>
+  )
+}
 
-export default ReplyMessageBubble;
+export default Wrapper

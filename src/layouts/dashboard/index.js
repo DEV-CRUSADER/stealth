@@ -4,18 +4,26 @@ import {
   Divider, 
   IconButton, 
   Stack,
-  Switch
+  Switch,
+  Typography, 
+  Menu,
+  MenuItem,
+
 } from "@mui/material";
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
+import { StyledMenu } from "./utils";
+
+
 import Logo from "../../assets/Images/logo.png";
-import { NavButtons, NavSetting } from "../../data";
+import { NavButtons, NavSetting, ProfileMenu } from "../../data";
 
 import useSettings from "../../hooks/useSettings";
 
 import { faker } from "@faker-js/faker";
+import { SignOut } from "phosphor-react";
 
 const DashboardLayout = () => {
   const theme = useTheme();
@@ -23,6 +31,16 @@ const DashboardLayout = () => {
   const [selected, setSelected] = useState(0);
 
   const {onToggleMode} = useSettings()
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
 
   return (
     <Stack direction="row">
@@ -142,7 +160,71 @@ const DashboardLayout = () => {
             defaultChecked={false}
             onChange={() => onToggleMode()}
           />
-          <Avatar alt="user" src={faker.image.avatar()}></Avatar>
+          <Stack>
+            
+          <StyledMenu
+            id="demo-customized-menu"
+            MenuListProps={{
+              'aria-labelledby': 'demo-customized-button',
+            }}
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+          >
+            {
+              ProfileMenu.map((menu, index) => (
+                <MenuItem onClick={handleClose} disableRipple key={index}>
+                  <Stack
+                    direction={"row"}
+                    spacing={2}
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    sx={{
+                      fontSize: "20px",
+                    }}
+                  >
+                    {menu.icon}
+                    <Typography>
+                      {menu.title}
+                    </Typography>
+                  </Stack>
+                </MenuItem>
+              ))
+            }
+            <Divider />
+            <MenuItem onClick={handleClose} disableRipple>
+              <Stack
+                direction={"row"}
+                spacing={2}
+                justifyContent={"center"}
+                alignItems={"center"}
+                sx={{
+                  color: theme.palette.error.main,
+                }}
+              >
+                <SignOut />
+                <Typography>
+                  Sign Out
+                </Typography>
+              </Stack>
+            </MenuItem>
+          </StyledMenu>
+
+            <Avatar 
+              alt="user" 
+              src={faker.image.avatar()}
+              id="demo-customized-button"
+              aria-controls={open ? 'demo-customized-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              variant="contained"
+              disableElevation
+              onClick={handleClick}
+              sx={{
+                cursor: "pointer",
+              }}
+            />
+          </Stack>
         </Stack>
         </Stack>
       </Box>

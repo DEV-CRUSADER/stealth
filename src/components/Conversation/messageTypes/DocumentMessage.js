@@ -5,7 +5,7 @@ import { alpha, useTheme } from "@mui/material/styles";
 
 import { File, DownloadSimple } from "phosphor-react";
 
-import { DetectURLFromText as Text } from "./utils";
+import { DetectURLFromText as Text, MessageWrapper } from "./utils";
 
 const DocumentMessageBubble = ({ message }) => {
   const theme = useTheme();
@@ -14,9 +14,8 @@ const DocumentMessageBubble = ({ message }) => {
     <Box textAlign={message.incoming && !message.outgoing ? "left" : "right"}>
       <Box
         sx={{
-          width: "280px",
+          width: "max-content",
           minWidth: "220px",
-          maxWidth: "70%",
           borderRadius: "10px",
           padding: "10px",
           display: "inline-block",
@@ -76,4 +75,10 @@ const DocumentMessageBubble = ({ message }) => {
   );
 };
 
-export default DocumentMessageBubble;
+const Wrapper = ({ message }) => {
+  return (
+    <MessageWrapper component={<DocumentMessageBubble message={message}/>} message={message}/>
+  )
+}
+
+export default Wrapper
