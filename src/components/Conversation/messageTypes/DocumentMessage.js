@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Stack, Typography, Button, IconButton } from "@mui/material";
+import { Box, Stack, Typography, IconButton } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
 
 import { File, DownloadSimple } from "phosphor-react";

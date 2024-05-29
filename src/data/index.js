@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";// import {  } from "phosphor-react";
 import {
-  ChatCircleDots,  Gear,
+  ChatCircleDots,
   GearSix,
   Phone,
   Users,

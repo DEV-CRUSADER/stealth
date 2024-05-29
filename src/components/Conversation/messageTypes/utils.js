@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack, IconButton, Tooltip, Menu, MenuItem, Typography } from "@mui/material";
 
-import { DotsThreeVertical, ArrowBendUpLeft , Smiley, ArrowBendUpRight, Star, Warning, Trash  } from "phosphor-react";
+import { DotsThreeVertical } from "phosphor-react";
 import { useTheme } from "@mui/material/styles";
 
 import { MessageMenuItems } from "../../../data";

@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, Skeleton } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import React from "react";
 import { alpha, useTheme } from "@mui/material/styles";
 

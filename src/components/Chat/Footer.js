@@ -77,32 +77,35 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
       InputProps={{
         disableUnderline: true,
         startAdornment: (
-          <Stack
-            direction={"column"}
-            sx={{
-              width: "max-content",
-              top: 0,
-            }}
+          <InputAdornment
+            position="static"
           >
             <Stack
-              spacing={2}
+              direction={"column"}
               sx={{
-                display: openActions ? "flex" : "none",
-                position: "relative", 
-                bottom: 0,
-                left: 0,
+                width: "max-content",
+                top: 0,
               }}
             >
               <Stack
-              spacing={2}
+                spacing={2}
                 sx={{
-                  position: "absolute",
-                  bottom: 30,
-                  left: -5,
+                  display: openActions ? "flex" : "none",
+                  position: "relative",
+                  bottom: 0,
+                  left: 0,
                 }}
               >
-                {Actions.map((el) => (
-                  <Tooltip title={el.title} placement="right">
+                <Stack
+                  spacing={2}
+                  sx={{
+                    position: "absolute",
+                    bottom: 30,
+                    left: -5,
+                  }}
+                >
+                  {Actions.map((el, index) => (
+                    <Tooltip title={el.title} placement="right" key={index}>
                       <Fab
                         onClick={() => {
                           setOpenActions(!openActions);
@@ -111,15 +114,14 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
                           backgroundColor: el.color,
                         }}
                         aria-label="add"
-                        >
+                      >
                         {el.icon}
                       </Fab>
-                  </Tooltip>
+                    </Tooltip>
                   ))}
                 </Stack>
-            </Stack>
+              </Stack>
 
-            <InputAdornment>
               <IconButton
                 onClick={() => {
                   setOpenActions(!openActions);
@@ -127,12 +129,14 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
               >
                 <LinkSimple color={theme.palette.primary.main} />
               </IconButton>
-            </InputAdornment>
-          </Stack>
+            </Stack>
+          </InputAdornment>
         ),
         endAdornment: (
-          <Stack sx={{ position: "relative" }}>
-            <InputAdornment>
+          <InputAdornment
+            position="static"
+          >
+            <Stack sx={{ position: "relative" }}>
               <IconButton
                 onClick={() => {
                   console.log("clicked");
@@ -141,8 +145,8 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
               >
                 <Smiley color={theme.palette.primary.main} />
               </IconButton>
-            </InputAdornment>
-          </Stack>
+            </Stack>
+          </InputAdornment>
         ),
       }}
     />
