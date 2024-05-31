@@ -99,7 +99,7 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
                 sx={{
                   position: "absolute",
                   bottom: 30,
-                  left: -5,
+                  left: -20,
                 }}
               >
                 {Actions.map((el, index) => (
@@ -119,7 +119,7 @@ const ChatInput = ({ openPicker, setOpenPicker }) => {
                 ))}
               </Stack>
             </Stack>
-            <InputAdornment position="start">
+            <InputAdornment >
               <IconButton
                 onClick={() => {
                   setOpenActions(!openActions);

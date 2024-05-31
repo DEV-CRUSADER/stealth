@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch as useAppDispatch, useSelector as useAppSelector } from "react-redux";
 import { persistStore, persistReducer } from "redux-persist";
 
-import { rootReducer, rootPeristConfig } from "./rootReducer";
+import { rootPeristConfig, rootReducer } from "./rootReducer";
 
 
 const store = configureStore({
@@ -16,7 +16,7 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
-const { getState, dispatch } = store;
+const { dispatch } = store;
 
 const useSelector = useAppSelector;
 
@@ -24,8 +24,7 @@ const useDispatch = useAppDispatch;
 
 export { 
   store, 
-  persistor, 
-  getState, 
+  persistor,
   dispatch, 
   useSelector, 
   useDispatch

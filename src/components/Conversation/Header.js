@@ -19,6 +19,9 @@ import {
   CaretDown,
 } from "phosphor-react";
 
+import { useDispatch } from "react-redux";
+import { ToggleSidebar } from "../../redux/slices/app";
+
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     backgroundColor: "#44b700",
@@ -51,6 +54,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 const Header = () => {
 
   const theme = useTheme();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState(faker.name.firstName());
   const [online, setOnline] = useState(false);
@@ -71,7 +75,16 @@ const Header = () => {
         height={"100%"}
         p={2}
       >
-        <Stack direction={"row"} spacing={2}>
+        <Stack 
+          direction={"row"} 
+          spacing={2}
+          onClick={() => {
+            dispatch(ToggleSidebar());
+          }}
+          sx={{
+            cursor: "pointer",
+          }}
+        >
           {online ? (
             <StyledBadge
               overlap="circular"
@@ -86,7 +99,7 @@ const Header = () => {
           <Stack>
             <Typography fontWeight={600}>{name}</Typography>
             <Typography variant={"caption"} color={"#676767"}>
-              Online
+              {online ? "Online" : "Offline"}
             </Typography>
           </Stack>
         </Stack>
