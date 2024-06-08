@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 import PropTypes from "prop-types";
 import { Tabs, Tab, Box, Typography } from "@mui/material";
+import Images from "./SharredMessages/Images";
+import Links from "./SharredMessages/Links";
+import Documents from "./SharredMessages/Documents";
 
 
 
@@ -62,13 +65,13 @@ const MediaAndLinks = () => {
         />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Images
+        <Images />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Links
+        <Links />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Documents
+        <Documents />
       </TabPanel>
     </>
   );

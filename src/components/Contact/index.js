@@ -63,7 +63,12 @@ const ContactInformation = () => {
           </IconButton>
         )}
       </Stack>
-      <Stack>
+      <Stack
+        sx={{
+          height: "calc(100vh - 60px)",
+          overflowY: "scroll",
+        }}
+      >
         {sidebar.type === "CONTACT" ? (
           <Profile />
         ) : sidebar.type === "MEDIA" ? (

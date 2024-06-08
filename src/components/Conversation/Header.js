@@ -57,7 +57,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState(faker.name.firstName());
-  const [online, setOnline] = useState(false);
+  const [online, setOnline] = useState(true);
 
   return (
     <Box

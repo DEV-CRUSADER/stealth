@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Box,
@@ -25,7 +25,7 @@ import {
 import { useDispatch } from "react-redux";
 import { UpdateSidebar } from "../../redux/slices/app";
 
-import { IOSSwitch, ReportButton } from "./utils";
+import { IOSSwitch, ReportButton, DialogBlock } from "./utils";
 
 const GroupTab = ({}) => {
   return (
@@ -58,6 +58,23 @@ const GroupTab = ({}) => {
 const Profile = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
+
+  const [openDialogBlock, setOpenDialogBlock] = useState(false);
+  const [blogDialogType, setBlogDialogType] = useState("DELETE");
+
+  const handleClickOpenDelete = () => {
+    setOpenDialogBlock(true);
+    setBlogDialogType("DELETE");
+  };
+
+  const handleClickOpenReport = () => {
+    setOpenDialogBlock(true);
+    setBlogDialogType("REPORT");
+  };
+
+  const handleClose = () => {
+    setOpenDialogBlock(false);
+  };
 
   return (
     <>
@@ -238,6 +255,7 @@ const Profile = () => {
             sx={{
               flexGrow: "1",
             }}
+            onClick={handleClickOpenReport}
           >
             Report
           </ReportButton>
@@ -248,9 +266,17 @@ const Profile = () => {
             sx={{
               flexGrow: "1",
             }}
+            onClick={handleClickOpenDelete}
           >
             Delete
           </Button>
+          {openDialogBlock && (
+            <DialogBlock 
+              open={openDialogBlock} 
+              handleClose={handleClose} 
+              DialogType={blogDialogType}
+            />
+          )}
         </Stack>
       </Stack>
     </>

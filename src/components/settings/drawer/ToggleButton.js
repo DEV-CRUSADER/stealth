@@ -13,12 +13,13 @@ import { IconButtonAnimate } from '../../animate';
 const RootStyle = styled('span')(({ theme }) => ({
   ...cssStyles(theme).bgBlur({ opacity: 0.64 }),
   right: 0,
-  top: '50%',
+  bottom: '30px',
   position: 'fixed',
   marginTop: theme.spacing(-3),
   padding: theme.spacing(0.5),
   zIndex: theme.zIndex.drawer + 2,
   borderRadius: '24px 0 20px 24px',
+  backgroundColor: "background.paper",
   boxShadow: `-12px 12px 32px -4px ${alpha(
     theme.palette.mode === 'light' ? theme.palette.grey[600] : theme.palette.common.black,
     0.36
