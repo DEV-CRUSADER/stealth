@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 import {
-  Box,
   Stack,
   Avatar,
   Typography,
   IconButton,
   Divider,
   Button,
+  Grid,
 } from "@mui/material";
 import { useTheme } from "@mui/material";
 
@@ -27,7 +27,7 @@ import { UpdateSidebar } from "../../redux/slices/app";
 
 import { IOSSwitch, ReportButton, DialogBlock } from "./utils";
 
-const GroupTab = ({}) => {
+const GroupTab = () => {
   return (
     <Stack
       direction={"row"}
@@ -81,7 +81,6 @@ const Profile = () => {
       <Stack
         direction={"row"}
         width={"100%"}
-        height={"100%"}
         justifyContent={"start"}
         alignContent={"center"}
         spacing={3}
@@ -158,38 +157,28 @@ const Profile = () => {
             <CaretRight />
           </IconButton>
         </Stack>
-        <Stack
-          direction={"row"}
-          maxWidth={"100%"}
-          alignItems={"center"}
-          justifyContent={"center"}
-          spacing={2}
+        <Grid
+          container
+          spacing={1}
+          sx={{
+            width: "100%",
+          }}
         >
-          <img
-            alt="image 1"
-            src={faker.image.cats()}
-            style={{
-              width: "75px",
-              aspectRatio: "1/1",
-            }}
-          />
-          <img
-            alt="image 1"
-            src={faker.image.abstract()}
-            style={{
-              width: "75px",
-              aspectRatio: "1/1",
-            }}
-          />
-          <img
-            alt="image 1"
-            src={faker.image.animals()}
-            style={{
-              width: "75px",
-              aspectRatio: "1/1",
-            }}
-          />
-        </Stack>
+          {[1,2,3].map((image, index) => {
+            return (
+              <Grid item xs={4} key={index}>
+                <img
+                  src={faker.image.abstract()}
+                  style={{
+                    width: "100%",
+                    borderRadius: "5px",
+                  }}
+                  alt="Loading..."
+                />
+              </Grid>
+            );
+          })}
+        </Grid>
       </Stack>
       <Divider variant="middle" />
       <Stack
@@ -271,9 +260,9 @@ const Profile = () => {
             Delete
           </Button>
           {openDialogBlock && (
-            <DialogBlock 
-              open={openDialogBlock} 
-              handleClose={handleClose} 
+            <DialogBlock
+              open={openDialogBlock}
+              handleClose={handleClose}
               DialogType={blogDialogType}
             />
           )}

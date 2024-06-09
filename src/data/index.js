@@ -17,6 +17,14 @@ import {
   Star,
   Warning,
   Trash,
+
+  Bell,
+  Lock,
+  Key,
+  PencilCircle,
+  Image,
+  Keyboard,
+  Note,
 } from "phosphor-react";
 
 const ProfileMenu = [
@@ -93,6 +101,141 @@ const MessageMenuItems = [
     text: "Report",
   },
 ];
+
+const SettingsOptions = [
+  {
+    id: 0,
+    icon: <Bell size={21}/>,
+    text: "Notificatios",
+  },
+  {
+    id: 1,
+    icon: <Lock size={21}/>,
+    text: "Privacy",
+  },
+  {
+    id: 2,
+    icon: <Key size={21}/>,
+    text: "Security",
+  },
+  {
+    id: 3,
+    icon: <PencilCircle size={21}/>,
+    text: "Theme",
+  },
+  {
+    id: 4,
+    icon: <Image size={21}/>,
+    text: "Chat wallpaper",
+  },
+  {
+    id: 5,
+    icon: <Note size={21}/>,
+    text: "Request accoutn info",
+  },
+  {
+    id: 6,
+    icon: <Keyboard size={21}/>,
+    text: "Keyboard shortcuts",
+  },
+  {
+    id: 7,
+    icon: <Info size={21}/>,
+    text: "Help", 
+  }
+]
+
+
+const ShortcutsList = [
+  {
+    key: 0,
+    title: "Mark as unread",
+    combination: ["Cmd", "Shift", "U"],
+  },
+  {
+    key: 1,
+    title: "Mute",
+    combination: ["Cmd", "Shift", "M"],
+  },
+  {
+    key: 2,
+    title: "Archive Chat",
+    combination: ["Cmd", "Shift", "E"],
+  },
+  {
+    key: 3,
+    title: "Delete Chat",
+    combination: ["Cmd", "Shift", "D"],
+  },
+  {
+    key: 4,
+    title: "Pin Chat",
+    combination: ["Cmd", "Shift", "P"],
+  },
+  {
+    key: 5,
+    title: "Search",
+    combination: ["Cmd", "F"],
+  },
+  {
+    key: 6,
+    title: "Search Chat",
+    combination: ["Cmd", "Shift", "F"],
+  },
+  {
+    key: 7,
+    title: "Next Chat",
+    combination: ["Cmd", "N"],
+  },
+  {
+    key: 8,
+    title: "Next Step",
+    combination: ["Ctrl", "Tab"],
+  },
+  {
+    key: 9,
+    title: "Previous Step",
+    combination: ["Ctrl", "Shift", "Tab"],
+  },
+  {
+    key: 10,
+    title: "New Group",
+    combination: ["Cmd", "Shift", "N"],
+  },
+  {
+    key: 11,
+    title: "Profile & About",
+    combination: ["Cmd", "P"],
+  },
+  {
+    key: 12,
+    title: "Increase speed of voice message",
+    combination: ["Shift", "."],
+  },
+  {
+    key: 13,
+    title: "Decrease speed of voice message",
+    combination: ["Shift", ","],
+  },
+  {
+    key: 14,
+    title: "Settings",
+    combination: ["Shift", "S"],
+  },
+  {
+    key: 15,
+    title: "Emoji Panel",
+    combination: ["Cmd", "E"],
+  },
+  {
+    key: 16,
+    title: "Sticker Panel",
+    combination: ["Cmd", "S"],
+  },
+];
+
+
+// Template Data Only for development
 
 const ChatList = [
   {
@@ -183,28 +326,33 @@ const ChatHistory = [
     message: "Hi 👋🏻, How are you ?",
     incoming: true,
     outgoing: false,
+    starred: true,
   },
   {
     type: "divider",
-    text: "Today",
+    text: "26 Oct, 2024",
+    starred: true,
   },
   {
     type: "msg",
     message: "Hi 👋 Panda, not bad, u ?",
     incoming: false,
     outgoing: true,
+    starred: false,
   },
   {
     type: "msg",
     message: "Can you send me an abstract image?",
     incoming: false,
     outgoing: true,
+    starred: false,
   },
   {
     type: "msg",
     message: "Ya sure, sending you a pic",
     incoming: true,
     outgoing: false,
+    starred: false,
   },
 
   {
@@ -214,6 +362,7 @@ const ChatHistory = [
     img: faker.image.abstract(),
     incoming: true,
     outgoing: false,
+    starred: false,
   },
   {
     type: "msg",
@@ -222,12 +371,14 @@ const ChatHistory = [
     img: faker.image.city(),
     incoming: false,
     outgoing: true,
+    starred: false,
   },
   {
     type: "msg",
     message: "Can you please send this in file format? lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Can you please send this in file format? lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. ",
     incoming: false,
     outgoing: true,
+    starred: true,
   },
   {
     type: "msg",
@@ -235,6 +386,7 @@ const ChatHistory = [
     message: "Yes sure, here you go.",
     incoming: true,
     outgoing: false,
+    starred: false,
   },
   {
     type: "msg",
@@ -242,6 +394,7 @@ const ChatHistory = [
     message: "Sent file.png",
     incoming: false,
     outgoing: true,
+    starred: false,
   },
   {
     type: "msg",
@@ -252,6 +405,7 @@ const ChatHistory = [
     message: "Yep, I can also do that",
     incoming: true,
     outgoing: false,
+    starred: true,
   },
   {
     type: "msg",
@@ -260,6 +414,7 @@ const ChatHistory = [
     message: "Yep, I can also do that",
     incoming: false,
     outgoing: true,
+    starred: true,
   },
   {
     type: "msg",
@@ -268,6 +423,14 @@ const ChatHistory = [
     message: "This is a google www.google.com , click to visit google.. www.youtube.com",
     incoming: true,
     outgoing: false,
+    starred: false,
+  },
+  {
+    type: "msg",
+    message: "Good",
+    incoming: false,
+    outgoing: true,
+    starred: true,
   },
 ];
 
@@ -946,6 +1109,9 @@ export {
   NavSetting,
   NavButtons,
   MessageMenuItems,
+  SettingsOptions,
+  ShortcutsList,
+
   ChatList,
   ChatHistory,
   MessageOptions,

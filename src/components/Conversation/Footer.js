@@ -179,7 +179,7 @@ const Footer = () => {
             <Box
               style={{
                 zIndex: 10,
-                position: "fixed",
+                position: "absolute",
                 display: openPicker ? "inline" : "none",
                 bottom: 75,
                 right: isMobile

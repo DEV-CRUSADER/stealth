@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { Stack, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import Chats from "../../components/Chats.js";
+import Chats from "../../components/Chat/index.js";
 import Conversation from "../../components/Conversation/index";
 import ContactInformaion from "../../components/Contact/index";
 
@@ -19,6 +19,7 @@ const GeneralApp = () => {
       <Chats />
       <Box
         sx={{
+          position: "relative",
           width: sidebar.open ? "calc(100vw - 720px)" : "calc(100vw - 400px)",
           backgroundColor:
             theme.palette.mode === "light"

@@ -1,4 +1,4 @@
-import { Box,Typography} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 import { alpha, useTheme } from "@mui/material/styles";
 
@@ -6,9 +6,14 @@ import { DetectURLFromText as Text, MessageWrapper } from "./utils";
 
 const MessageBubble = ({ message }) => {
   const theme = useTheme();
-  
+
   return (
-    <Box textAlign={message.incoming && !message.outgoing ? "left" : "right"}>
+    <Box
+      textAlign={message.incoming && !message.outgoing ? "left" : "right"}
+      sx={{
+        maxWidth: "500px",
+      }}
+    >
       <Box
         sx={{
           width: "fit-content",
@@ -37,17 +42,28 @@ const MessageBubble = ({ message }) => {
         >
           <Text
             content={message.message}
-            linkColor={theme.palette.mode === "dark" ? ( message.incoming && !message.outgoing ? theme.palette.primary.light : theme.palette.primary.darker ): theme.palette.primary.darker}          />
+            linkColor={
+              theme.palette.mode === "dark"
+                ? message.incoming && !message.outgoing
+                  ? theme.palette.primary.light
+                  : theme.palette.primary.darker
+                : theme.palette.primary.darker
+            }
+          />
         </Typography>
       </Box>
     </Box>
   );
-}
+};
 
-const Wrapper = ({ message }) => {
+const Wrapper = ({ message, displayType }) => {
   return (
-    <MessageWrapper component={<MessageBubble message={message}/>} message={message}/>
-  )
-}
+    <MessageWrapper
+      component={<MessageBubble message={message} />}
+      message={message}
+      displayType={displayType}
+    />
+  );
+};
 
-export default Wrapper
+export default Wrapper;

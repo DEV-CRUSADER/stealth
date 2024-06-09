@@ -10,7 +10,12 @@ const LinkMessage = ({ message }) => {
   const theme = useTheme();
 
   return (
-    <Box textAlign={message.incoming && !message.outgoing ? "left" : "right"}>
+    <Box
+      textAlign={message.incoming && !message.outgoing ? "left" : "right"}
+      sx={{
+        maxWidth: "500px",
+      }}
+    >
       <Box
         p={0.5}
         sx={{
@@ -84,9 +89,15 @@ const LinkMessage = ({ message }) => {
             }}
             gutterBottom
           >
-            <Text 
-              content={message.message} 
-              linkColor={theme.palette.mode === "dark" ? ( message.incoming && !message.outgoing ? theme.palette.primary.light : theme.palette.primary.darker ): theme.palette.primary.darker}
+            <Text
+              content={message.message}
+              linkColor={
+                theme.palette.mode === "dark"
+                  ? message.incoming && !message.outgoing
+                    ? theme.palette.primary.light
+                    : theme.palette.primary.darker
+                  : theme.palette.primary.darker
+              }
             />
           </Typography>
         </Stack>
@@ -95,10 +106,14 @@ const LinkMessage = ({ message }) => {
   );
 };
 
-const Wrapper = ({ message }) => {
+const Wrapper = ({ message, displayType }) => {
   return (
-    <MessageWrapper component={<LinkMessage message={message}/>} message={message}/>
-  )
-}
+    <MessageWrapper
+      component={<LinkMessage message={message} />}
+      message={message}
+      displayType={displayType}
+    />
+  );
+};
 
-export default Wrapper
+export default Wrapper;

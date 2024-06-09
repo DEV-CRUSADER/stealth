@@ -7,8 +7,7 @@ import { File, DownloadSimple } from "phosphor-react";
 
 import { DetectURLFromText as Text, MessageWrapper } from "./utils";
 
-export const DocumentView = ({ message, bgColor }) => {
-
+export const DocumentView = ({ message, bgColor, displayType }) => {
   const theme = useTheme();
 
   return (
@@ -18,9 +17,14 @@ export const DocumentView = ({ message, bgColor }) => {
       alignItems={"center"}
       p={1}
       sx={{
+        maxWidth: "500px",
         borderRadius: "9px",
         backgroundColor: bgColor ?? theme.palette.grey[300],
-        color: bgColor ? ( theme.palette.mode === "light" ? "#31363F" : "#EEEEEE" ) : "#6D2D80",
+        color: bgColor
+          ? theme.palette.mode === "light"
+            ? "#31363F"
+            : "#EEEEEE"
+          : "#6D2D80",
       }}
     >
       <Stack spacing={1} direction={"row"} alignItems={"center"}>
@@ -86,11 +90,12 @@ const DocumentMessageBubble = ({ message }) => {
   );
 };
 
-const Wrapper = ({ message }) => {
+const Wrapper = ({ message, displayType }) => {
   return (
     <MessageWrapper
       component={<DocumentMessageBubble message={message} />}
       message={message}
+      displayType={displayType}
     />
   );
 };

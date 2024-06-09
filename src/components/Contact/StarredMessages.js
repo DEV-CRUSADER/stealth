@@ -1,8 +1,10 @@
 import React from 'react'
 
+import Messages from '../Conversation/Messages'
+
 const StarredMessages = () => {
   return (
-    <div>StarredMessages</div>
+    <Messages displayType={"STARRED"}/>
   )
 }
 

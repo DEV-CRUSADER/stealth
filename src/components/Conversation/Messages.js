@@ -11,8 +11,16 @@ import {
   DocumentMessageBubble
 } from "./messageTypes";
 
-const Messages = () => {
+const Messages = ({ displayType }) => {
   const theme = useTheme();
+
+  let messages = undefined;
+
+  if (displayType === "STARRED"){
+    messages = ChatHistory.filter(message => message.starred === true);
+  } else {
+    messages = ChatHistory
+  }
 
   return (
     <Box
@@ -25,22 +33,23 @@ const Messages = () => {
       p={2}
     >
       <Stack spacing={1}>
-        {ChatHistory.map((message, index) => {
+        {messages.map((message, index) => {
+          
           switch (message.type) {
             case "divider":
               return <Divider key={index} >{message.text}</Divider>;
             case "msg":
               switch (message.subtype) {
                 case "img":
-                  return <MediaMessage key={index} message={message} />;
+                  return <MediaMessage key={index} message={message} displayType={displayType}/>;
                 case "reply":
-                  return <ReplyMessageBubble key={index} message={message} />;
+                  return <ReplyMessageBubble key={index} message={message} displayType={displayType}/>;
                 case "link":
-                  return <LinkMessage key={index} message={message} />;
+                  return <LinkMessage key={index} message={message}displayType={displayType}/>;
                 case "doc":
-                  return <DocumentMessageBubble key={index} message={message} />;
+                  return <DocumentMessageBubble key={index} message={message} displayType={displayType}/>;
                 default:
-                  return <MessageBubble key={index} message={message} />;
+                  return <MessageBubble key={index} message={message} displayType={displayType}/>;
               }
             default:
               return null;

@@ -8,10 +8,15 @@ const ReplyMessageBubble = ({ message }) => {
   const theme = useTheme();
 
   return (
-    <Box textAlign={message.incoming && !message.outgoing ? "left" : "right"}>
+    <Box
+      textAlign={message.incoming && !message.outgoing ? "left" : "right"}
+      sx={{
+        maxWidth: "500px",
+      }}
+    >
       <Box
         sx={{
-          width: "fit-content",          // maxWidth: "70%",
+          width: "fit-content",
           borderRadius: "10px",
           padding: "10px",
           display: "inline-block",
@@ -39,7 +44,8 @@ const ReplyMessageBubble = ({ message }) => {
               maxWidth: "calc(100vw - 800px)",
             }}
           >
-            {message.message.substring(0, 30) + (message.message.length > 30 ? "..." : "")}
+            {message.message.substring(0, 30) +
+              (message.message.length > 30 ? "..." : "")}
           </Typography>
           <Typography
             variant="body2"
@@ -53,7 +59,13 @@ const ReplyMessageBubble = ({ message }) => {
           >
             <Text
               content={message.reply}
-              linkColor={theme.palette.mode === "dark" ? ( message.incoming && !message.outgoing ? theme.palette.primary.light : theme.palette.primary.darker ): theme.palette.primary.darker}
+              linkColor={
+                theme.palette.mode === "dark"
+                  ? message.incoming && !message.outgoing
+                    ? theme.palette.primary.light
+                    : theme.palette.primary.darker
+                  : theme.palette.primary.darker
+              }
             />
           </Typography>
         </Stack>
@@ -62,10 +74,14 @@ const ReplyMessageBubble = ({ message }) => {
   );
 };
 
-const Wrapper = ({ message }) => {
+const Wrapper = ({ message, displayType }) => {
   return (
-    <MessageWrapper component={<ReplyMessageBubble message={message}/>} message={message}/>
-  )
-}
+    <MessageWrapper
+      component={<ReplyMessageBubble message={message} />}
+      message={message}
+      displayType={displayType}
+    />
+  );
+};
 
-export default Wrapper
+export default Wrapper;

@@ -4,7 +4,7 @@ import { alpha, useTheme } from "@mui/material/styles";
 
 import { DetectURLFromText as Text, MessageWrapper } from "./utils";
 
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const MediaMessage = ({ message }) => {
   const theme = useTheme();
@@ -13,8 +13,7 @@ const MediaMessage = ({ message }) => {
     <Box
       p={0.5}
       sx={{
-        width: "fit-content",
-        maxWidth: "70%",
+        maxWidth: "500px",
         borderRadius: "10px",
         padding: "10px",
         display: "inline-block",
@@ -49,9 +48,15 @@ const MediaMessage = ({ message }) => {
           }}
           gutterBottom
         >
-          <Text 
-            content={message.message} 
-            linkColor={theme.palette.mode === "dark" ? ( message.incoming && !message.outgoing ? theme.palette.primary.light : theme.palette.primary.darker ): theme.palette.primary.darker}
+          <Text
+            content={message.message}
+            linkColor={
+              theme.palette.mode === "dark"
+                ? message.incoming && !message.outgoing
+                  ? theme.palette.primary.light
+                  : theme.palette.primary.darker
+                : theme.palette.primary.darker
+            }
           />
         </Typography>
       </Stack>
@@ -59,10 +64,14 @@ const MediaMessage = ({ message }) => {
   );
 };
 
-const Wrapper = ({ message }) => {
+const Wrapper = ({ message, displayType }) => {
   return (
-    <MessageWrapper component={<MediaMessage message={message}/>} message={message}/>
-  )
-}
+    <MessageWrapper
+      component={<MediaMessage message={message} />}
+      message={message}
+      displayType={displayType}
+    />
+  );
+};
 
-export default Wrapper
+export default Wrapper;

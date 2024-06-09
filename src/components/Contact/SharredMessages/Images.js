@@ -23,7 +23,7 @@ const Images = () => {
                 width: "100%",
                 borderRadius: "5px",
               }}
-              alt="media"
+              alt="Loading..."
             />
           </Grid>
         );
