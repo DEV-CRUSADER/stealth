@@ -107,41 +107,49 @@ const SettingsOptions = [
     id: 0,
     icon: <Bell size={21}/>,
     text: "Notificatios",
+    action: "NOTIFICATION_SETTINGS"
   },
   {
     id: 1,
     icon: <Lock size={21}/>,
     text: "Privacy",
+    action: "PRIVACY_SETTINGS"
   },
   {
     id: 2,
     icon: <Key size={21}/>,
     text: "Security",
+    action: "SECURITY_SETTINGS"
   },
   {
     id: 3,
     icon: <PencilCircle size={21}/>,
     text: "Theme",
+    action: "THEME_SETTINGS"
   },
   {
     id: 4,
     icon: <Image size={21}/>,
     text: "Chat wallpaper",
+    action: "CHAT_WALLPAPER_SETTINGS"
   },
   {
     id: 5,
     icon: <Note size={21}/>,
-    text: "Request accoutn info",
+    text: "Request account info",
+    action: "REQUEST_ACCOUNT_INFO_SETTINGS"
   },
   {
     id: 6,
     icon: <Keyboard size={21}/>,
     text: "Keyboard shortcuts",
+    action: "KEYBOARD_SHORTCUT_SETTINGS"
   },
   {
     id: 7,
     icon: <Info size={21}/>,
     text: "Help", 
+    action: "HELP_SETTINGS"
   }
 ]
 
@@ -150,42 +158,42 @@ const ShortcutsList = [
   {
     key: 0,
     title: "Mark as unread",
-    combination: ["Cmd", "Shift", "U"],
+    combination: ["Ctrl", "Shift", "U"],
   },
   {
     key: 1,
     title: "Mute",
-    combination: ["Cmd", "Shift", "M"],
+    combination: ["Ctrl", "Shift", "M"],
   },
   {
     key: 2,
     title: "Archive Chat",
-    combination: ["Cmd", "Shift", "E"],
+    combination: ["Ctrl", "Shift", "E"],
   },
   {
     key: 3,
     title: "Delete Chat",
-    combination: ["Cmd", "Shift", "D"],
+    combination: ["Ctrl", "Shift", "D"],
   },
   {
     key: 4,
     title: "Pin Chat",
-    combination: ["Cmd", "Shift", "P"],
+    combination: ["Ctrl", "Shift", "P"],
   },
   {
     key: 5,
     title: "Search",
-    combination: ["Cmd", "F"],
+    combination: ["Ctrl", "F"],
   },
   {
     key: 6,
     title: "Search Chat",
-    combination: ["Cmd", "Shift", "F"],
+    combination: ["Ctrl", "Shift", "F"],
   },
   {
     key: 7,
     title: "Next Chat",
-    combination: ["Cmd", "N"],
+    combination: ["Ctrl", "N"],
   },
   {
     key: 8,
@@ -200,12 +208,12 @@ const ShortcutsList = [
   {
     key: 10,
     title: "New Group",
-    combination: ["Cmd", "Shift", "N"],
+    combination: ["Ctrl", "Shift", "N"],
   },
   {
     key: 11,
     title: "Profile & About",
-    combination: ["Cmd", "P"],
+    combination: ["Ctrl", "P"],
   },
   {
     key: 12,
@@ -225,12 +233,12 @@ const ShortcutsList = [
   {
     key: 15,
     title: "Emoji Panel",
-    combination: ["Cmd", "E"],
+    combination: ["Ctrl", "E"],
   },
   {
     key: 16,
     title: "Sticker Panel",
-    combination: ["Cmd", "S"],
+    combination: ["Ctrl", "Shift", "S"],
   },
 ];
 

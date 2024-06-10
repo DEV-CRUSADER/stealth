@@ -1,13 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Box, Stack, Typography, Avatar, Divider, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
 import { SettingsOptions } from "../../data";
-import { Divide, SignOut } from "phosphor-react";
+
+import { ThemeDialogBlock } from "./ThemeDialog";
+import ShortcutDialog from "./ShortcutDialog";
 
 const SettingsMenu = () => {
   const theme = useTheme();
+
+  const [openThemeBlock, setOpenThemeBlock] = useState(false);
+  const [openShortcutBlock, setOpenShortcutBlock] = useState(false);
+
+  const handleThemeOption = () => {
+    setOpenThemeBlock(true);
+  };
+
+  const handleClose = () => {
+    setOpenThemeBlock(false);
+    setOpenShortcutBlock(false);
+  };
+
+
+  const handleOptionClick = (option) => {
+    switch (option) {
+
+      case "NOTIFICATION_SETTINGS":
+        console.log("NOTIFICATION_SETTINGS");
+        break;
+      case "PRIVACY_SETTINGS":
+        console.log("PRIVACY_SETTINGS");
+        break;
+      case "SECURITY_SETTINGS":
+        console.log("SECURITY_SETTINGS");
+        break;
+      case "THEME_SETTINGS":
+        handleThemeOption(true);
+        break;
+      case "CHAT_WALLPAPER_SETTINGS":
+        console.log("CHAT_WALLPAPER_SETTINGS");
+        break;
+      case "REQUEST_ACCOUNT_INFO_SETTINGS":
+        console.log("REQUEST_ACCOUNT_INFO_SETTINGS");
+        break;
+      case "KEYBOARD_SHORTCUT_SETTINGS":
+        setOpenShortcutBlock(true);
+        break;
+      case "HELP_SETTINGS":
+        console.log("HELP_SETTINGS");
+        break;
+      default:
+        console.log("No option selected");
+    }
+  }
 
   return (
     <Stack
@@ -49,7 +96,7 @@ const SettingsMenu = () => {
         <Stack>
           <Divider />
           {SettingsOptions.map((option, index) => (
-            <>
+            <React.Fragment key={index}>
               <Stack
                 key={index}
                 direction={"row"}
@@ -62,20 +109,18 @@ const SettingsMenu = () => {
                     backgroundColor: theme.palette.action.hover,
                   },
                 }}
+                onClick={() => handleOptionClick(option.action)}
               >
                 {option.icon}
                 <Typography variant="h6">{option.text}</Typography>
               </Stack>
               <Divider />
-            </>
+            </React.Fragment>
           ))}
         </Stack>
       </Stack>
-      {/* <Stack direction={"row"} alignItems={"center"} spacing={1}>
-        <Button variant="outlined" startIcon={<SignOut />}>
-          <Typography variant="body1">Log out</Typography>
-        </Button>
-      </Stack> */}
+      <ThemeDialogBlock open={openThemeBlock} handleClose={handleClose} />
+      <ShortcutDialog open={openShortcutBlock} handleClose={handleClose} />
     </Stack>
   );
 };

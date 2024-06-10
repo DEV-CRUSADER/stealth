@@ -13,6 +13,7 @@ const initialState = {
   // Mode
   onToggleMode: () => {},
   onChangeMode: () => {},
+  onApplyMode: () => {},
 
   // Direction
   onToggleDirection: () => {},
@@ -75,6 +76,14 @@ const SettingsProvider = ({ children }) => {
       themeMode: event.target.value,
     });
   };
+
+  const onApplyMode = (mode) => {
+    setSettings({
+      ...settings,
+      themeMode: mode,
+    });
+  }
+
 
   // Direction
 
@@ -169,6 +178,7 @@ const SettingsProvider = ({ children }) => {
         ...settings, // Mode
         onToggleMode,
         onChangeMode,
+        onApplyMode,
 
         // Direction
         onToggleDirection,
