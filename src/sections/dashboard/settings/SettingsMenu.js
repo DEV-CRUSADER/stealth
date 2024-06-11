@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import { Box, Stack, Typography, Avatar, Divider, Button } from "@mui/material";
+import { Stack, Typography, Avatar, Divider } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
-import { SettingsOptions } from "../../data";
+import { SettingsOptions } from "../../../data";
 
 import { ThemeDialogBlock } from "./ThemeDialog";
 import ShortcutDialog from "./ShortcutDialog";

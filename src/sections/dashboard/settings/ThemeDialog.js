@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import useSettings from "../../hooks/useSettings";
+import useSettings from "../../../hooks/useSettings";
 
 
 const useThemeDetector = () => {

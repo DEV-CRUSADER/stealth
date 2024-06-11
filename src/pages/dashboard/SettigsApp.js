@@ -1,6 +1,6 @@
 import { Stack } from '@mui/material'
 import React from 'react'
-import SettingsMenu from '../../components/Setting/SettingsMenu'
+import SettingsMenu from '../../sections/dashboard/settings/SettingsMenu'
 
 
 

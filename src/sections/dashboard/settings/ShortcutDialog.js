@@ -9,7 +9,7 @@ import {
   Typography,
   Grid,
 } from "@mui/material";
-import { ShortcutsList } from "../../data";
+import { ShortcutsList } from "../../../data";
 
 const ShortcutDialog = ({ open, handleClose }) => {
   return (
