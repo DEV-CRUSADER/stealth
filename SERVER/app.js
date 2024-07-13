@@ -9,6 +9,7 @@ const xss = require('xss-clean');
 const cors = require('cors');
 
 const app = express();
+const router = require("./routes/index");
 
 
 app.use(mongosanitize());
@@ -41,6 +42,7 @@ const limiter = rateLimit({
 
 
 app.use('/tawk', limiter);
+app.use(router);
 
 app.use(express.urlencoded({ extended: true }));
 
