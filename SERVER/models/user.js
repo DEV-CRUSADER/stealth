@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 
 const baseModal = require("./base");
+const { type } = require("os");
 
 const userSchema = new mongoose.Schema({
   ...baseModal,
@@ -13,6 +14,19 @@ const userSchema = new mongoose.Schema({
   lastName: {
     type: String,
     required: [true, "Last Name is required"],
+  },
+  username: {
+    type: String,
+    required: [true, "Username is required"],
+    unique: true,
+  },
+  anonymous: {
+    type: Boolean,
+    default: false
+  },
+  anonymousName: {
+    type: String,
+    maxlength: [20, "Anonymous name can't be more than 20 characters"]
   },
   about: {
     type: String,

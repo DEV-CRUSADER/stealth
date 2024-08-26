@@ -8,8 +8,12 @@ import { SettingsOptions } from "../../../data";
 import { ThemeDialogBlock } from "./ThemeDialog";
 import ShortcutDialog from "./ShortcutDialog";
 
+import { LogoutUser } from "../../../redux/slices/auth";
+import { useDispatch } from "react-redux";
+
 const SettingsMenu = () => {
   const theme = useTheme();
+  const dispatch = useDispatch();
 
   const [openThemeBlock, setOpenThemeBlock] = useState(false);
   const [openShortcutBlock, setOpenShortcutBlock] = useState(false);
@@ -50,7 +54,8 @@ const SettingsMenu = () => {
         console.log("HELP_SETTINGS");
         break;
       case "LOG_OUT":
-        console.log("LOG_OUT");
+        // console.log("LOG_OUT");
+        dispatch(LogoutUser());
         break;
       default:
         console.log("No option selected");
@@ -65,7 +70,9 @@ const SettingsMenu = () => {
         backgroundColor: theme.palette.background.paper,
         width: 320,
         boxShadow: theme.shadows[4],
+        overflowY: "scroll",
       }}
+      height={"100%"} maxHeight={"100vh"}
     >
       <Stack>
         <Typography variant="h4">Settings</Typography>

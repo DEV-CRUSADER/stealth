@@ -22,14 +22,13 @@ export default function AuthResetPasswordForm() {
 
   const methods = useForm({
     resolver: yupResolver(ResetPasswordSchema),
-    defaultValues: { email: "demo@tawk.com" },
+    defaultValues: { email: "" },
   });
 
   const { handleSubmit } = methods;
 
   const onSubmit = async (data) => {
     try {
-      // TODO: Send API Request
       dispatch(ForgotPassword(data));
     } catch (error) {
       console.error(error);

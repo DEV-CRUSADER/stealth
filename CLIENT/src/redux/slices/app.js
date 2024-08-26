@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { dispatch } from "../store";
 
-
 const initalState = {
   sidebar: {
     open: false,
@@ -14,9 +13,9 @@ const initalState = {
     severity: null,
     message: null,
   },
-  users: [], // all users of app who are not friends and not requested yet
+  users: [],
   all_users: [],
-  friends: [], // all friends 
+  friends: [], // all friends
   friendRequests: [], // all friend requests
   chat_type: null,
   room_id: null,
@@ -25,52 +24,45 @@ const initalState = {
 
 const appSlice = createSlice({
   name: "app",
-  initialState: initalState, 
+  initialState: initalState,
   reducers: {
     toggleSidebar: (state, action) => {
       state.sidebar.open = !state.sidebar.open;
     },
-    upadteSidebarType: (state, action) => {
+    updateSidebarType: (state, action) => {
       state.sidebar.type = action.payload.type;
     },
+    closeSnackBar(state, action) {
+      state.snackbar.open = false;
+      state.snackbar.message = null;
+      state.snackbar.severity = null;
+    },
     openSnackBar(state, action) {
-      console.log(action.payload);
       state.snackbar.open = true;
       state.snackbar.severity = action.payload.severity;
       state.snackbar.message = action.payload.message;
-    },
-    closeSnackBar(state) {
-      console.log("This is getting executed");
-      state.snackbar.open = false;
-      state.snackbar.message = null;
     },
   },
 });
 
 export default appSlice.reducer;
 
-export function ToggleSidebar() {
-
+function ToggleSidebar() {
   const type = "CONTACT";
 
   return async () => {
     dispatch(appSlice.actions.toggleSidebar());
-    dispatch(appSlice.actions.upadteSidebarType({ type }));
+    dispatch(appSlice.actions.updateSidebarType({ type }));
   };
 }
 
-export function UpdateSidebar(type) {
+function UpdateSidebar(type) {
   return async () => {
-    dispatch(appSlice.actions.upadteSidebarType({ type }));
+    dispatch(appSlice.actions.updateSidebarType({ type }));
   };
 }
 
-
-export const closeSnackBar = () => async (dispatch, getState) => {
-  dispatch(appSlice.actions.closeSnackBar());
-};
-
-export const showSnackbar =
+const showSnackbar =
   ({ severity, message }) =>
   async (dispatch, getState) => {
     dispatch(
@@ -81,6 +73,19 @@ export const showSnackbar =
     );
 
     setTimeout(() => {
-      dispatch(appSlice.actions.closeSnackBar());
-    }, 4000);
+      dispatch(CloseSnackBar());
+    }, 5000);
   };
+
+const CloseSnackBar = () => {
+  return async (dispatch) => {
+    dispatch(appSlice.actions.closeSnackBar());
+  };
+}
+
+export {
+  ToggleSidebar,
+  UpdateSidebar,
+  CloseSnackBar,
+  showSnackbar,
+}

@@ -22,6 +22,7 @@ export default function AuthRegisterForm() {
   const LoginSchema = Yup.object().shape({
     firstName: Yup.string().required("First name required"),
     lastName: Yup.string().required("Last name required"),
+    username: Yup.string().required("Username is required"),
     email: Yup.string()
       .required("Email is required")
       .email("Email must be a valid email address"),
@@ -31,8 +32,9 @@ export default function AuthRegisterForm() {
   const defaultValues = {
     firstName: "",
     lastName: "",
-    email: "demo@tawk.com",
-    password: "demo1234",
+    username: "",
+    email: "",
+    password: "",
   };
 
   const methods = useForm({
@@ -72,6 +74,8 @@ export default function AuthRegisterForm() {
           <RHFTextField name="firstName" label="First name" />
           <RHFTextField name="lastName" label="Last name" />
         </Stack>
+        
+        <RHFTextField name="username" label="Username" />
 
         <RHFTextField name="email" label="Email address" />
 

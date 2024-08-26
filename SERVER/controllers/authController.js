@@ -10,17 +10,31 @@ const catchAsync = require("../utils/catchAsync");
 
 const signToken = (userId) => jwt.sign({ userId }, process.env.JWT_SECRET);
 
+const sendEmail = require("../mailer");
+
+const SITE_URL = process.env.SITE_URL;
+
 
 exports.register = catchAsync(async (req, res, next) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, username, email, password } = req.body;
 
   const filteredBody = filterObj(
     req.body,
     "firstName",
     "lastName",
+    "username",
     "email",
     "password"
   );
+
+  const existing_username = await User.findOne({ username: username });
+
+  if (existing_username) {
+    return res.status(400).json({
+      status: "error",
+      message: "Username already in use, Please choose another.",
+    });
+  }
 
   const existing_user = await User.findOne({ email: email });
 
@@ -54,7 +68,7 @@ exports.sendOTP = catchAsync(async (req, res, next) => {
     specialChars: false,
     lowerCaseAlphabets: false,
   });
-  console.log(new_otp);
+  // console.log(new_otp);
 
   const otp_expiry_time = Date.now() + 10 * 60 * 1000; // 10 Mins after otp is sent
 
@@ -66,7 +80,14 @@ exports.sendOTP = catchAsync(async (req, res, next) => {
 
   await user.save({ new: true, validateModifiedOnly: true });
 
-  // TODO send mail
+  sendEmail(
+    'account_verification', 
+    {
+      otp: new_otp,
+    }, 
+    user.email,
+    "SphereX Account Verification OTP"
+  );
 
   res.status(200).json({
     status: "success",
@@ -119,9 +140,9 @@ exports.verifyOTP = catchAsync(async (req, res, next) => {
 });
 
 exports.login = catchAsync(async (req, res, next) => {
-  const { email, password } = req.body;
+  const { user , password } = req.body;
 
-  if (!email || !password) {
+  if (!user || !password) {
     res.status(400).json({
       status: "error",
       message: "Both email and password are required",
@@ -129,33 +150,37 @@ exports.login = catchAsync(async (req, res, next) => {
     return;
   }
 
-  const user = await User.findOne({ email: email }).select("+password");
+  const searchedUser = await User.findOne({
+    $or: [{ email: user }, { username: user }]
+  }).select("+password");
+  
+  // const searchedUser = await User.findOne({ email: user }).select("+password");
 
-  if (!user || !user.password) {
+  if (!searchedUser || !searchedUser.password) {
     res.status(400).json({
       status: "error",
-      message: "Incorrect password",
+      message: "Email/Username or password is incorrect",
     });
 
     return;
   }
 
-  if (!user || !(await user.correctPassword(password, user.password))) {
+  if (!searchedUser || !(await searchedUser.correctPassword(password, searchedUser.password))) {
     res.status(400).json({
       status: "error",
-      message: "Email or password is incorrect",
+      message: "Email?Username or password is incorrect",
     });
 
     return;
   }
 
-  const token = signToken(user._id);
+  const token = signToken(searchedUser._id);
 
   res.status(200).json({
     status: "success",
     message: "Logged in successfully!",
     token,
-    user_id: user._id,
+    user_id: searchedUser._id,
   });
 });
 
@@ -209,10 +234,17 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   // 3) TODO: Send it to user's email
   try {
-    const resetURL = `http://localhost:3000/auth/v1/reaetPassword/${resetToken}`;
-    // TODO => Send Email with this Reset URL to user's email address
+    const resetURL = `${SITE_URL}/auth/new-password?token=${resetToken}`;
 
-    console.log(resetURL);
+    sendEmail(
+      'password_reset', 
+      {
+        userName: user.firstName + " " + user.lastName,
+        resetPasswordLink: resetURL
+      }, 
+      user.email,
+      "SphereX Account Password Reset"
+    );
 
     res.status(200).json({
       status: "success",

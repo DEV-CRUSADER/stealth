@@ -5,23 +5,33 @@ const helmet = require('helmet');
 const mongosanitize = require('express-mongo-sanitize');
 const bodyParser = require('body-parser');
 const xss = require('xss-clean');
+const dotenv = require('dotenv');
 
 const cors = require('cors');
 
 const app = express();
 const router = require("./routes/index");
 
+dotenv.config({ path: './.env' });
 
 app.use(mongosanitize());
 app.use(xss());
 
-app.use(cors(
-  {
-    origin: 'http://localhost:3000',
-    methods: 'GET, POST, PUT, DELETE, PATCH',
-    credentials: true,
-  }
-));
+console.log(typeof(process.env.ALLOWED_ORIGINS));
+const allowedOrigins = process.env.ALLOWED_ORIGINS;
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: 'GET, POST, PUT, DELETE, PATCH',
+  credentials: true,
+}));
+
 
 app.use(express.json({ limit: '10kb' }));
 app.unsubscribe(bodyParser.json());
@@ -41,7 +51,7 @@ const limiter = rateLimit({
 });
 
 
-app.use('/tawk', limiter);
+app.use('/spherex', limiter);
 app.use(router);
 
 app.use(express.urlencoded({ extended: true }));

@@ -5,6 +5,9 @@ import { Navigate, useRoutes } from "react-router-dom";
 import DashboardLayout from "../layouts/dashboard";
 import AuthLayout from "../layouts/auth";
 
+//theme
+import { useTheme } from "@mui/material";
+
 // config
 import { DEFAULT_PATH } from "../config";
 import LoadingScreen from "../components/LoadingScreen";
@@ -18,6 +21,9 @@ const Loadable = (Component) => (props) => {
 };
 
 export default function Router() {
+
+  const theme = useTheme();
+
   return useRoutes([
     {
       path: "/auth",
@@ -29,7 +35,7 @@ export default function Router() {
         { path: "new-password", element: <NewPasswordPage /> },
         { path: "verify", element: <VerifyPage /> },
 
-        { path: "404", element: <Page404 /> },
+        { path: "404", element: <Page404 theme={theme} /> },
         { path: "*", element: <Navigate to="/404" replace /> },
       ],
     },
@@ -44,7 +50,7 @@ export default function Router() {
         { path: "call", element: <CallApp /> },
         { path: "settings", element: <SettigsApp /> },
 
-        { path: "404", element: <Page404 /> },
+        { path: "404", element: <Page404 theme={theme} /> },
         { path: "*", element: <Navigate to="/404" replace /> },
       ],
     },

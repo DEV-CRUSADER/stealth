@@ -21,11 +21,14 @@ const Chats = () => {
             ? "#F8FAFF"
             : theme.palette.background.paper,
         boxShadow: theme.shadows[5],
+        overflowY: "scroll",
       }}
+      height={"100%"}
+      maxHeight={"100vh"}
     >
       <Stack direction={"row"} spacing={2} alignItems={"center"} p={2}>
         <IconButton onClick={() => navigate(-1)}>
-          <CaretLeft size={20} weight="fill"/>
+          <CaretLeft size={20} weight="fill" />
         </IconButton>
         <Typography variant={"h4"}>Profile</Typography>
       </Stack>

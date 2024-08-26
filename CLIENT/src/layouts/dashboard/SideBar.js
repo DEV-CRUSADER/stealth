@@ -78,9 +78,9 @@ const SideBar = () => {
             width: "max-content",
           }}
         >
-          {NavButtons.map((button) =>
+          {NavButtons.map((button, index) =>
             button.index === selected ? (
-              <>
+              <React.Fragment key={index}>
                 {button.index === 3 && <Divider />}
                 <Box
                   sx={{
@@ -103,9 +103,9 @@ const SideBar = () => {
                     {button.active}
                   </IconButton>
                 </Box>
-              </>
+              </React.Fragment>
             ) : (
-              <>
+              <React.Fragment key={index}>
                 {button.index === 3 && <Divider />}
                 <IconButton
                   onClick={() => {
@@ -123,7 +123,7 @@ const SideBar = () => {
                 >
                   {button.icon}
                 </IconButton>
-              </>
+              </React.Fragment>
             )
           )}
         </Stack>
@@ -135,7 +135,6 @@ const SideBar = () => {
           id="demo-customized-button"
           aria-haspopup="true"
           variant="contained"
-          disableElevation
           sx={{
             cursor: "pointer",
           }}

@@ -25,7 +25,8 @@ import {
 import { useDispatch } from "react-redux";
 import { UpdateSidebar } from "../../redux/slices/app";
 
-import { IOSSwitch, ReportButton, DialogBlock } from "./utils";
+import { ReportButton, DialogBlock } from "./utils";
+import { IOSSwitch } from "../../components/utils";
 
 const GroupTab = () => {
   return (

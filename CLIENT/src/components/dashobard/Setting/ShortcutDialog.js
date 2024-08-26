@@ -29,7 +29,7 @@ const ShortcutDialog = ({ open, handleClose }) => {
           <Grid container spacing={3}>
             {ShortcutsList.map(({ key, title, combination }) => {
               return (
-                <Grid item xs={6}>
+                <Grid item xs={6} key={key}>
                   <Stack
                     sx={{ width: "100%" }}
                     justifyContent="space-between"
@@ -42,7 +42,7 @@ const ShortcutDialog = ({ open, handleClose }) => {
                       {title}
                     </Typography>
                     <Stack spacing={2} direction="row">
-                      {combination.map((el) => {
+                      {combination.map((el, index) => {
                         return (
                           <Button
                             sx={{
@@ -51,6 +51,7 @@ const ShortcutDialog = ({ open, handleClose }) => {
                             }}
                             disabled
                             variant="contained"
+                            key={index}
                           >
                             {el}
                           </Button>

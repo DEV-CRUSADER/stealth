@@ -22,15 +22,15 @@ export default function AuthLoginForm() {
   const {isLoading} = useSelector((state) => state.auth);
 
   const LoginSchema = Yup.object().shape({
-    email: Yup.string()
-      .required("Email is required")
-      .email("Email must be a valid email address"),
+    user: Yup.string()
+      .required("Email is required"),
     password: Yup.string().required("Password is required"),
   });
+  // .email("Email must be a valid email address"),
 
   const defaultValues = {
-    email: "demo@tawk.com",
-    password: "demo1234",
+    user: "",
+    password: "",
   };
 
   const methods = useForm({
@@ -47,8 +47,6 @@ export default function AuthLoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      console.log(data);
-      // TODO: submit data to backend
       dispatch(LoginUser(data));
     } catch (error) {
       console.error(error);
@@ -66,8 +64,8 @@ export default function AuthLoginForm() {
         {!!errors.afterSubmit && (
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
-
-        <RHFTextField name="email" label="Email address" />
+ 
+        <RHFTextField name="user" label="Email or Username" />
 
         <RHFTextField
           name="password"

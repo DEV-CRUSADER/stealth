@@ -4,12 +4,13 @@ import { enUS, frFR, zhCN, viVN, arSD } from '@mui/material/locale';
 // routes
 import { PATH_DASHBOARD } from "./routes/paths";
 
-export const BASE_URL = "https://localhost:3000/";
+// TODO: Add your BASE_URL for api here
+export const BASE_URL = "http://localhost:5000/";
 
 export const S3_BUCKET_NAME = 'project-dev';
 export const AWS_ACCESS_KEY = '';
 export const AWS_SECRET_ACCESS_KEY = '';
-export const AWS_S3_REGION = 'ap-south-1'; // eg. ap-south-1
+export const AWS_S3_REGION = 'ap-south-1';
 
 
 export const defaultSettings = {

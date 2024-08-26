@@ -24,16 +24,21 @@ const handlebarOptions = {
 
 transporter.use("compile", hbs(handlebarOptions));
 
-const sendEmail = async (template, context, to_email) => {
+const sendEmail = async (template, context, to_email, subject) => {
   const mailOptions = {
-    from: process.env.EMAIL_USERNAME,
+    from: process.env.SENDER_EMAIL,
     to: to_email,
-    subject: "Welcome!",
+    subject: subject,
     template: template,
     context: context,
   };
 
+  if (process.env.NODE_ENV == "development") {
+    console.log(mailOptions);
+    return;
+  }
   await transporter.sendMail(mailOptions);
+
 };
 
 module.exports = sendEmail;
