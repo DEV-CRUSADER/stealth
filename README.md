@@ -1,6 +1,81 @@
-# Getting Started with SphereX
+<h1 align="center">
+Getting started with SphereX
+</h1>
+<p align="center">
+MongoDB, Expressjs, React/Redux, Nodejs
+</p>
+<p align="center">
+    <a href="https://www.gnu.org/licenses/gpl-3.0">
+      <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" />
+   </a>
+</p>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Clone or download
+```terminal
+> git clone https://github.com/CodeWithSaurabhYadav/ChatApp
+> npm i
+```
+
+## project structure
+```terminal
+LICENSE
+README.md
+package.json
+server/
+   package.json
+   .env (to create .env, check [prepare your secret session])
+client/
+   package.json
+...
+```
+
+# Dependencies(tech-stacks)
+Here's a similar format for the updated dependencies:
+
+### Dependencies (Tech Stacks)
+
+**Client-side** | **Server-side**
+--- | ---
+@emoji-mart/data: ^1.0.6 | bcryptjs: ^2.4.3
+@emoji-mart/react: ^1.0.1 | cors: ^2.8.5
+@emotion/react: ^11.10.4 | dotenv: ^16.4.5
+@emotion/styled: ^11.10.4 | express: ^4.19.2
+@hookform/resolvers: ^3.6.0 | express-mongo-sanitize: ^2.2.0
+@iconify/react: ^4.0.0 | express-rate-limit: ^7.3.1
+@mui/lab: ^5.0.0-alpha.172 | helmet: ^7.1.0
+@mui/material: ^5.10.8 | jsonwebtoken: ^9.0.2
+@reduxjs/toolkit: ^2.2.5 | mongoose: ^8.4.1
+@testing-library/jest-dom: ^5.16.5 | morgan: ^1.10.0
+@testing-library/react: ^13.4.0 | nodemailer: ^6.9.14
+@testing-library/user-event: ^13.5.0 | nodemailer-express-handlebars: ^6.1.2
+@tsparticles/react: ^3.0.0 | otp-generator: ^4.0.1
+@tsparticles/slim: ^3.5.0 | xss-clean: ^0.1.4
+axios: ^1.7.2 | 
+emoji-mart: ^5.2.2 | 
+framer-motion: ^7.5.3 | 
+i: ^0.3.7 | 
+npm: ^10.8.1 | 
+phosphor-react: ^1.4.1 | 
+prop-types: ^15.8.1 | 
+react: ^18.2.0 | 
+react-dom: ^18.2.0 | 
+react-dropzone: ^14.2.3 | 
+react-helmet-async: ^1.3.0 | 
+react-i18next: ^11.18.6 | 
+react-lazy-load-image-component: ^1.6.0 | 
+react-redux: ^9.1.2 | 
+react-router-dom: ^6.4.2 | 
+react-scripts: ^5.0.1 | 
+redux-persist: ^6.0.0 | 
+simplebar-react: ^2.4.3 | 
+stylis-plugin-rtl: ^2.0.2 | 
+web-vitals: ^2.1.4 | 
+yup: ^1.4.0 | 
+@faker-js/faker: ^7.5.0 | 
+concurrently: ^8.2.2 |
+
 ## Setting Up
 
 ### First Lets Download / Install all the required Tooling
