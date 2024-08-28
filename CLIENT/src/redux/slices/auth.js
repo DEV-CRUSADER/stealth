@@ -162,7 +162,7 @@ export function LogoutUser() {
   return async (dispatch, getState) => {
     window.localStorage.removeItem("user_id");
     dispatch(slice.actions.signOut());
-    dispatch(showSnackbar({ severity: "warning", message: "Logged out" }));
+    dispatch(showSnackbar({ severity: "sucess", message: "Logged out" }));
   };
 }
 

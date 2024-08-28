@@ -21,7 +21,8 @@ const ContactInformation = () => {
 
   return (
     <Box
-      width={"320px"}
+      // width={"320px"}
+      width={"400px"}
       sx={{
         backgroundColor:
           theme.palette.mode === "light"

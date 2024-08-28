@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { dispatch } from "../store";
+import axios from "axios";
 
 const initalState = {
   sidebar: {
@@ -42,10 +43,20 @@ const appSlice = createSlice({
       state.snackbar.severity = action.payload.severity;
       state.snackbar.message = action.payload.message;
     },
+    updateUsers(state, action) {
+      state.users = action.payload.users;
+    },
+    updateFriends(state, action) {
+      state.friends = action.payload.friends;
+    },
+    updateAllUsers(state, action) {
+      state.all_users = action.payload.all_users;
+    },
+    updateFriendRequests(state, action) {
+      state.friendRequests = action.payload.friendRequests;
+    },
   },
 });
-
-export default appSlice.reducer;
 
 function ToggleSidebar() {
   const type = "CONTACT";
@@ -81,11 +92,76 @@ const CloseSnackBar = () => {
   return async (dispatch) => {
     dispatch(appSlice.actions.closeSnackBar());
   };
-}
+};
+
+const FetchUsers = () => {
+  return async (dispatch, getState) => {
+    await axios
+      .get("/user/v1/get-users", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getState().auth.token}`,
+        },
+      })
+      .then((response) => {
+        dispatch(appSlice.actions.updateUsers({ users: response.data.data }));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
+const FetchFriends = () => {
+  return async (dispatch, getState) => {
+    await axios
+      .get("/user/v1/get-friendss", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getState().auth.token}`,
+        },
+      })
+      .then((response) => {
+        dispatch(
+          appSlice.actions.updateFriends({ friends: response.data.data })
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
+
+const FetchFriendRequests = () => {
+  return async (dispatch, getState) => {
+    await axios
+      .get("/user/v1/get-friend-requests", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getState().auth.token}`,
+        },
+      })
+      .then((response) => {
+        dispatch(
+          appSlice.actions.updateFriendRequests({
+            friendRequests: response.data.data,
+          })
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+};
 
 export {
   ToggleSidebar,
   UpdateSidebar,
   CloseSnackBar,
   showSnackbar,
-}
+  FetchUsers,
+  FetchFriends,
+  FetchFriendRequests,
+};
+
+export default appSlice.reducer;

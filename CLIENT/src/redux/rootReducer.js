@@ -14,12 +14,12 @@ const rootPeristConfig = {
 }
 
 const rootReducer = combineReducers({
-  app: appReducer,
   auth: authReducer,
+  app: appReducer,
 });
 
 
 export {
-  rootPeristConfig,
   rootReducer,
+  rootPeristConfig,
 }

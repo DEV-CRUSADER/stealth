@@ -82,32 +82,41 @@ const Profile = () => {
       <Stack
         direction={"row"}
         width={"100%"}
-        justifyContent={"start"}
+        justifyContent={"center"}
         alignContent={"center"}
-        spacing={3}
-        p={3}
       >
-        <Avatar
-          src={faker.image.avatar()}
-          sx={{
-            width: 75,
-            height: 75,
-          }}
-        />
-        <Stack justifyContent={"center"} spacing={0}>
-          <Typography variant="body1" display="block" gutterBottom>
-            {faker.name.firstName()}
-          </Typography>
-          <Typography variant="body1">{faker.phone.number()}</Typography>
+        <Stack
+          // width={"100%"}
+          justifyContent={"center"}
+          alignContent={"center"}
+          spacing={2}
+          p={3}
+          sx={{}}
+          textAlign={'center'}
+          alignItems={"center"}
+        >
+          <Avatar
+            src={faker.image.avatar()}
+            sx={{
+              width: 100,
+              height: 100,
+            }}
+          />
+          <Stack justifyContent={"center"} alignContent={"center"} spacing={0}>
+            <Typography variant="body1" display="block" gutterBottom>
+              {faker.name.firstName()}
+            </Typography>
+            <Typography variant="body1">{faker.phone.number()}</Typography>
+          </Stack>
         </Stack>
       </Stack>
       <Stack
         direction={"row"}
         justifyContent={"center"}
         alignItems={"center"}
-        spacing={3}
+        spacing={2}
         sx={{
-          padding: "0 0 2rem 0",
+          margin: "-1rem 0 1rem 0",
         }}
       >
         <IconButton
@@ -118,7 +127,7 @@ const Profile = () => {
           }}
         >
           <Stack alignItems={"center"} justifyContent={"center"}>
-            <VideoCamera weight="fill"/>
+            <VideoCamera weight="fill" />
             <Typography>Video</Typography>
           </Stack>
         </IconButton>
@@ -130,7 +139,7 @@ const Profile = () => {
           }}
         >
           <Stack alignItems={"center"} justifyContent={"center"}>
-            <Phone weight="fill"/>
+            <Phone weight="fill" />
             <Typography>Voice</Typography>
           </Stack>
         </IconButton>
@@ -155,7 +164,7 @@ const Profile = () => {
               dispatch(UpdateSidebar("MEDIA"));
             }}
           >
-            <CaretRight weight="fill"/>
+            <CaretRight weight="fill" />
           </IconButton>
         </Stack>
         <Grid
@@ -165,7 +174,7 @@ const Profile = () => {
             width: "100%",
           }}
         >
-          {[1,2,3].map((image, index) => {
+          {[1, 2, 3].map((image, index) => {
             return (
               <Grid item xs={4} key={index}>
                 <img
@@ -203,7 +212,7 @@ const Profile = () => {
             dispatch(UpdateSidebar("STARRED"));
           }}
         >
-          <CaretRight weight="fill"/>
+          <CaretRight weight="fill" />
         </IconButton>
       </Stack>
       <Divider variant="middle" />
