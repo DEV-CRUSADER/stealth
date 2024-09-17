@@ -9,7 +9,6 @@ import ContactInformaion from "../../components/Contact";
 import { useSelector } from "react-redux";
 import Calls from "../../components/dashobard/Call";
 
-import SnackBar from "../utils";
 
 const CallApp = () => {
   const theme = useTheme();
@@ -23,7 +22,7 @@ const CallApp = () => {
         <Box
           sx={{
             position: "relative",
-            width: sidebar.open ? "calc(100vw - 720px)" : "calc(100vw - 400px)",
+            width: sidebar.open ? "calc(100vw - 800px)" : "calc(100vw - 400px)",
             backgroundColor:
               theme.palette.mode === "light"
                 ? "#FFFFFF"
@@ -35,8 +34,6 @@ const CallApp = () => {
         </Box>
         {sidebar.open && <ContactInformaion />}
       </Stack>
-
-      <SnackBar />
     </>
   );
 };

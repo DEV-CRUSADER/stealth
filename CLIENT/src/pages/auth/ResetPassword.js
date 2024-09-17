@@ -4,7 +4,6 @@ import React from "react";
 import { CaretLeft } from "phosphor-react";
 import AuthResetPasswordForm from "../../sections/auth/ResetPasswordForm";
 
-import SnackBar from "../utils";
 
 const ResetPassword = () => {
   return (
@@ -38,8 +37,6 @@ const ResetPassword = () => {
         <CaretLeft size={24} />
         Return to sign in
       </Link>
-
-      <SnackBar />
     </>
   );
 };

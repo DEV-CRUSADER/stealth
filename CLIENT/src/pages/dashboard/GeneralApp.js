@@ -7,8 +7,6 @@ import Chats from "../../components/dashobard/Chat";
 import Conversation from "../../components/Conversation";
 import ContactInformaion from "../../components/Contact";
 
-import SnackBar from "../utils";
-
 import { useSelector } from "react-redux";
 
 const GeneralApp = () => {
@@ -23,7 +21,7 @@ const GeneralApp = () => {
         <Box
           sx={{
             position: "relative",
-            width: sidebar.open ? "calc(100vw - 720px - 80px)" : "calc(100vw - 400px)",
+            width: sidebar.open ? "calc(100vw - 800px)" : "calc(100vw - 400px)",
             backgroundColor:
               theme.palette.mode === "light"
                 ? "#FFFFFF"
@@ -35,8 +33,6 @@ const GeneralApp = () => {
         </Box>
         {sidebar.open && <ContactInformaion />}
       </Stack>
-
-      <SnackBar />
     </>
   );
 };

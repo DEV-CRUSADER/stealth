@@ -9,8 +9,6 @@ import ContactInformaion from "../../components/Contact";
 import { useSelector } from "react-redux";
 import Groups from "../../components/dashobard/Group";
 
-import SnackBar from "../utils";
-
 const GeneralApp = () => {
   const theme = useTheme();
 
@@ -23,7 +21,7 @@ const GeneralApp = () => {
         <Box
           sx={{
             position: "relative",
-            width: sidebar.open ? "calc(100vw - 720px)" : "calc(100vw - 400px)",
+            width: sidebar.open ? "calc(100vw - 800px)" : "calc(100vw - 400px)",
             backgroundColor:
               theme.palette.mode === "light"
                 ? "#FFFFFF"
@@ -35,8 +33,6 @@ const GeneralApp = () => {
         </Box>
         {sidebar.open && <ContactInformaion />}
       </Stack>
-
-      <SnackBar />
     </>
   );
 };

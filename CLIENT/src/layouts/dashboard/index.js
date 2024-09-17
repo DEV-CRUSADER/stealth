@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material/styles";
 
 import SideBar from "./SideBar";
 import { connectSocket, socket } from "../../socket";
-// import { showSnackbar } from "../../redux/slices/app";
+import { showSnackbar } from "../../redux/slices/app.js";
 
 const DashboardLayout = () => {
   

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { dispatch } from "../store";
 import axios from "axios";
 
 const initalState = {
@@ -61,14 +60,14 @@ const appSlice = createSlice({
 function ToggleSidebar() {
   const type = "CONTACT";
 
-  return async () => {
+  return async (dispatch) => {
     dispatch(appSlice.actions.toggleSidebar());
     dispatch(appSlice.actions.updateSidebarType({ type }));
   };
 }
 
 function UpdateSidebar(type) {
-  return async () => {
+  return async (dispatch) => {
     dispatch(appSlice.actions.updateSidebarType({ type }));
   };
 }

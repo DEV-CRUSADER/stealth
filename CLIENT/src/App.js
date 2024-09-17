@@ -4,6 +4,7 @@ import Router from "./routes";
 import ThemeProvider from "./theme";
 // components
 import ThemeSettings from "./components/settings";
+import SnackBar from "./components/utils/snackbar.js";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Router />{" "}
         </ThemeSettings>
       </ThemeProvider>
+      <SnackBar />
     </>
   );
 }

@@ -4,9 +4,6 @@ import { Stack, Typography, Link } from "@mui/material";
 import AuthSocial from "../../sections/auth/AuthSocial";
 import LoginForm from "../../sections/auth/LoginForm";
 
-import SnackBar from "../utils";
-
-
 // ----------------------------------------------------------------------
 
 export default function LoginPage() {
@@ -31,7 +28,6 @@ export default function LoginPage() {
       <LoginForm />
 
       <AuthSocial />
-      <SnackBar />
     </>
   );
 }

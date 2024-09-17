@@ -4,7 +4,6 @@ import VerifyForm from "../../sections/auth/VerifyForm";
 
 import { useSelector } from "react-redux";
 
-import SnackBar from "../utils";
 
 export default function LoginPage() {
   const { email } = useSelector((state) => state.auth);
@@ -20,8 +19,6 @@ export default function LoginPage() {
       </Stack>
       {/* Form */}
       <VerifyForm />
-
-      <SnackBar />
     </>
   );
 }

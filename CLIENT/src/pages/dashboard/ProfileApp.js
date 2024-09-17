@@ -9,8 +9,6 @@ import ContactInformaion from "../../components/Contact";
 import { useSelector } from "react-redux";
 import Profile from "../../components/dashobard/Profile";
 
-import SnackBar from "../utils";
-
 const ProfileApp = () => {
   const theme = useTheme();
 
@@ -23,7 +21,7 @@ const ProfileApp = () => {
         <Box
           sx={{
             position: "relative",
-            width: sidebar.open ? "calc(100vw - 720px)" : "calc(100vw - 400px)",
+            width: sidebar.open ? "calc(100vw - 800px)" : "calc(100vw - 400px)",
             backgroundColor:
               theme.palette.mode === "light"
                 ? "#FFFFFF"
@@ -35,8 +33,6 @@ const ProfileApp = () => {
         </Box>
         {sidebar.open && <ContactInformaion />}
       </Stack>
-
-      <SnackBar />
     </>
   );
 };

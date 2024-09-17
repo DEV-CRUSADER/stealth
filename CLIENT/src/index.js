@@ -10,6 +10,9 @@ import SettingsProvider from "./contexts/SettingsContext";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./redux/store";
 
+// service worker
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
@@ -30,3 +33,4 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+serviceWorkerRegistration.register();

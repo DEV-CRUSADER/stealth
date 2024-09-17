@@ -6,8 +6,6 @@ import { Stack, Typography, Link } from "@mui/material";
 import RegisterForm from "../../sections/auth/RegisterForm";
 import AuthSocial from "../../sections/auth/AuthSocial";
 
-import SnackBar from "../utils";
-
 // ----------------------------------------------------------------------
 
 export default function Register() {
@@ -48,8 +46,6 @@ export default function Register() {
       </Typography>
 
       <AuthSocial />
-
-      <SnackBar />
     </>
   );
 }
