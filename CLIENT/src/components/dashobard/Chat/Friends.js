@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { FetchFriendRequests, FetchFriends, FetchUsers } from "../../../redux/slices/app";
+import { FriendElement, UserElement, FriendRequestElement } from "../../UserElememt";
 
 
 const UserList = () => {
@@ -19,9 +20,7 @@ const UserList = () => {
   return (
     <>
       {users.map((user) => (
-        <Stack key={user._id}>
-          <h1>{user.name}</h1>
-        </Stack>
+        <UserElement key={user._id} {...user}/>
       ))}
     </>
   );
@@ -41,9 +40,7 @@ const FriendsList = () => {
   return (
     <>
       {friends.map((user) => (
-        <Stack key={user._id}>
-          <h1>{user.name}</h1>
-        </Stack>
+        <FriendElement key={user._id} {...user} id={user._id}/>
       ))}
     </>
   );
@@ -62,9 +59,7 @@ const FriendsRequestList = () => {
   return (
     <>
       {friendRequests.map((user) => (
-        <Stack key={user._id}>
-          <h1>{user.name}</h1>
-        </Stack>
+        <FriendRequestElement key={user._id}  {...user} id={user._id}/>
       ))}
     </>
   );
