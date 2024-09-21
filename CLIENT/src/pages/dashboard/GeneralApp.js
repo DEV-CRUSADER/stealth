@@ -8,11 +8,11 @@ import Conversation from "../../components/Conversation";
 import ContactInformaion from "../../components/Contact";
 
 import { useSelector } from "react-redux";
+import NullConversation from "./utils";
 
 const GeneralApp = () => {
   const theme = useTheme();
-
-  const { sidebar } = useSelector((state) => state.app);
+  const { sidebar, chat_type, room_id } = useSelector((state) => state.app);
 
   return (
     <>
@@ -29,7 +29,9 @@ const GeneralApp = () => {
             height: "100%",
           }}
         >
-          <Conversation />
+          {room_id !== null && chat_type !== null 
+            ? <Conversation /> 
+            : <NullConversation />}
         </Box>
         {sidebar.open && <ContactInformaion />}
       </Stack>

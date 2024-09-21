@@ -91,6 +91,10 @@ const userSchema = new mongoose.Schema({
   socket_id: {
     type: String
   },
+  status_type:{
+    type: String,
+    enum: ["Invisible", "Visible"],
+  },
   status: {
     type: String,
     enum: ["Online", "Offline"]

@@ -109,12 +109,12 @@ const Groups = () => {
             </Typography>
             {ChatList.filter((chat) => chat.pinned && chat.online).map(
               (pinnedChats) => (
-                <ChatComponent key={pinnedChats.id} {...pinnedChats} />
+                <ChatComponent key={pinnedChats.id} {...pinnedChats} chat_type="Group"/>
               )
             )}
             {ChatList.filter((chat) => chat.pinned && !chat.online).map(
               (pinnedChats) => (
-                <ChatComponent key={pinnedChats.id} {...pinnedChats} />
+                <ChatComponent key={pinnedChats.id} {...pinnedChats} chat_type="Group"/>
               )
             )}
           </Stack>
@@ -129,12 +129,12 @@ const Groups = () => {
             </Typography>
             {ChatList.filter((chat) => !chat.pinned && chat.online).map(
               (pinnedChats) => (
-                <ChatComponent key={pinnedChats.id} {...pinnedChats} />
+                <ChatComponent key={pinnedChats.id} {...pinnedChats} chat_type="Group"/>
               )
             )}
             {ChatList.filter((chat) => !chat.pinned && !chat.online).map(
               (pinnedChats) => (
-                <ChatComponent key={pinnedChats.id} {...pinnedChats} />
+                <ChatComponent key={pinnedChats.id} {...pinnedChats} chat_type="Group"/>
               )
             )}
           </Stack>

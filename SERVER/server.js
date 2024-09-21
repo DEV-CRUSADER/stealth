@@ -2,6 +2,7 @@ const app = require("./app");
 const http = require("http");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const { Server } = require("socket.io");
 const User = require("./models/user");
@@ -112,11 +113,36 @@ io.on("connection", async (socket) => {
       to: receiver._id,
       message: "Friend request accepted",
     });
-
   });
 
+  // Handle text and link messages
+  socket.io('text_message', (data) => {
+    console.log('Recieved message', data)
+
+    // data = {to, from, message, file}
+
+    // TODO: rest of the logic
+  })
+
+  socket.io('file_message', (data) => {
+    console.log('Recieved message', data)
+
+    // data = {to, from, message, file}
+
+    const fileExtension = path.extname(data.file);
+    const fileName = `${Date.now()}_${Math.floor(Math.random() * 1000)}${fileExtension}`;
+
+    // TODO: rest of the logic for AWS - s3 upload file to server and send link to client
+  })
 
   socket.on("end", async (data) => {
+    if (data.user_id) {
+      await User.findByIdAndUpdate(data.user_id, { status: "Offline" });
+    }
+
+    // Brodcasting user disconnected
+    socket.broadcast.emit("user_disconnected", data.user_id);
+
     console.log("User disconnected", data);
     socket.disconnect(0);
   });

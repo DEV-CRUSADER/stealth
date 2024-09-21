@@ -118,12 +118,12 @@ const Chats = () => {
               </Typography>
               {ChatList.filter((chat) => chat.pinned && chat.online).map(
                 (pinnedChats) => (
-                  <ChatComponent key={pinnedChats.id} {...pinnedChats} />
+                  <ChatComponent key={pinnedChats.id} {...pinnedChats} chat_type="Individual"/>
                 )
               )}
               {ChatList.filter((chat) => chat.pinned && !chat.online).map(
                 (pinnedChats) => (
-                  <ChatComponent key={pinnedChats.id} {...pinnedChats} />
+                  <ChatComponent key={pinnedChats.id} {...pinnedChats} chat_type="Individual"/>
                 )
               )}
             </Stack>
@@ -138,12 +138,12 @@ const Chats = () => {
               </Typography>
               {ChatList.filter((chat) => !chat.pinned && chat.online).map(
                 (pinnedChats) => (
-                  <ChatComponent key={pinnedChats.id} {...pinnedChats} />
+                  <ChatComponent key={pinnedChats.id} {...pinnedChats} chat_type="Individual"/>
                 )
               )}
               {ChatList.filter((chat) => !chat.pinned && !chat.online).map(
                 (pinnedChats) => (
-                  <ChatComponent key={pinnedChats.id} {...pinnedChats} />
+                  <ChatComponent key={pinnedChats.id} {...pinnedChats} chat_type="Individual"/>
                 )
               )}
             </Stack>

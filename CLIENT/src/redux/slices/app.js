@@ -54,6 +54,10 @@ const appSlice = createSlice({
     updateFriendRequests(state, action) {
       state.friendRequests = action.payload.friendRequests;
     },
+    selectConversation(state, action) {
+      state.chat_type = action.payload.chat_type;
+      state.room_id = action.payload.room_id;
+    }
   },
 });
 
@@ -153,6 +157,17 @@ const FetchFriendRequests = () => {
   };
 };
 
+const SelectConversation = (chat_type, room_id) => {
+  return async (dispatch) => {
+    dispatch(
+      appSlice.actions.selectConversation({
+        chat_type,
+        room_id,
+      })
+    );
+  };
+}
+
 export {
   ToggleSidebar,
   UpdateSidebar,
@@ -161,6 +176,7 @@ export {
   FetchUsers,
   FetchFriends,
   FetchFriendRequests,
+  SelectConversation
 };
 
 export default appSlice.reducer;
